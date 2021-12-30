@@ -4,9 +4,11 @@ import NextLink from "next/link";
 
 const Link = ({ children, ...rest }: React.PropsWithChildren<LinkProps>) => {
   return (
-    <a className="cursor-pointer underline decoration-yellow-400 dark:decoration-yellow-400">
-      <NextLink {...rest}>{children}</NextLink>
-    </a>
+    <NextLink {...rest}>
+      <a className="transition-colors duration-300 underline decoration-2 underline-offset-2 decoration-wavy decoration-yellow-400 hover:decoration-pink-400">
+        {children}
+      </a>
+    </NextLink>
   );
 };
 

@@ -2,7 +2,7 @@ import Item from "./Item";
 
 const Nav = () => {
   return (
-    <ul className="list-none py-2 w-full flex justify-end items-center space-x-6 font-semibold">
+    <ul className="list-none py-4 w-full flex justify-end items-center space-x-6 font-semibold">
       <Item href="/" passHref>
         home
       </Item>
