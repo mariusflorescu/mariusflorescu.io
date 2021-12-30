@@ -26,7 +26,7 @@ const Home: NextPage = () => {
           Test link
         </Link>
 
-        <GradientText as="h1" className="">
+        <GradientText className="">
           Hello this is a text gradient test
         </GradientText>
       </div>
