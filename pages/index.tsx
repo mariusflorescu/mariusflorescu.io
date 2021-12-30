@@ -11,7 +11,7 @@ const Home: NextPage = () => {
       Current theme is {theme}!<br />
       <button onClick={() => setTheme("light")}>Light Mode</button>
       <button onClick={() => setTheme("dark")}>Dark Mode</button>
-      <div className="prose prose-neutral prose-lg dark:prose-invert">
+      <div className="prose prose-neutral dark:prose-invert">
         <h1>This is a h1</h1>
         <h2>This is a h2</h2>
         <h3>This is a h3</h3>

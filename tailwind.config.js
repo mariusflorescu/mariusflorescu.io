@@ -9,6 +9,10 @@ module.exports = {
       container: {
         center: true,
       },
+      fontFamily: {
+        merri: ["Merriweather", "system-ui", "serif"],
+        mulish: ["Mulish", "system-ui", "serif"],
+      },
     },
   },
   plugins: [
