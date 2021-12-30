@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { useTheme } from "next-themes";
 import Layout from "../layout/Main";
 import Link from "../components/Link";
+import GradientText from "../components/GradientText";
 
 const Home: NextPage = () => {
   const { theme, setTheme } = useTheme();
@@ -24,6 +25,10 @@ const Home: NextPage = () => {
         <Link href="/blog" passHref>
           Test link
         </Link>
+
+        <GradientText as="h1" className="">
+          Hello this is a text gradient test
+        </GradientText>
       </div>
     </Layout>
   );
