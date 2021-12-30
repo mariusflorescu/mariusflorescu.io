@@ -1,7 +1,16 @@
 import type { NextPage } from "next";
+import { useTheme } from "next-themes";
 
 const Home: NextPage = () => {
-  return <div className="bg-neutral-900 p-12">Hello guys</div>;
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <div>
+      Current theme is {theme}!<br />
+      <button onClick={() => setTheme("light")}>Light Mode</button>
+      <button onClick={() => setTheme("dark")}>Dark Mode</button>
+    </div>
+  );
 };
 
 export default Home;
