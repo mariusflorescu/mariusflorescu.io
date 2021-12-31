@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
@@ -9,9 +9,9 @@ const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="feather feather-github"
       {...props}
     >
@@ -20,4 +20,4 @@ const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => {
   );
 };
 
-export default GithubIcon
+export default GithubIcon;
