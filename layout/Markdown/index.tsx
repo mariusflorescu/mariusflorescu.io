@@ -5,13 +5,17 @@ import Footer from "../../components/Footer";
 
 const Layout: React.FC = ({ children }) => {
   const proseHeadings = `prose-headings:underline prose-headings:underline-offset-2 prose-heading:decoration prose-headings:decoration-yellow-400`;
+  const proseAnchor = `prose-a:transition-colors prose-a:duration-300 prose-a:underline prose-a:decoration-2 prose-a:underline-offset-2 prose-a:decoration-wavy prose-a:decoration-pink-400 hover:prose-a:decoration-yellow-400`;
+  const prosePre = `prose-pre:first:bg-white`;
+  const proseCode = `prose-code:before:content-[''] prose-code:after:content-[''] prose-code:px-1 prose-code:bg-neutral-200 dark:prose-code:bg-neutral-800 prose-code:rounded`;
+  const proseListItem = `prose-li:my-1`;
 
   return (
     <Container>
-      <div className="h-full flex flex-col">
+      <div className="h-full w-full flex flex-col">
         <Nav />
         <article
-          className={`py-3 grow prose prose-neutral dark:prose-invert ${proseHeadings}`}
+          className={`min-w-full py-3 grow prose prose-neutral dark:prose-invert ${proseHeadings} ${proseAnchor} ${proseCode} ${prosePre} ${proseListItem}`}
         >
           {children}
         </article>
