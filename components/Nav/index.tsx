@@ -37,8 +37,8 @@ const routes: TRoute[] = [
     href: "/",
   },
   {
-    name: "writings",
-    href: "/writings",
+    name: "writing",
+    href: "/writing",
   },
   {
     name: "contact",

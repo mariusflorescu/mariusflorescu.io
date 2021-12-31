@@ -3,6 +3,7 @@ import { getAllFilesFrontMatter } from "../lib/mdx";
 import Meta from "../components/Meta";
 import Layout from "../layout/Main";
 import Title from "../components/Title";
+import PostCard from "../components/PostCard";
 
 type PostMatter = {
   title: string;
@@ -12,12 +13,10 @@ type PostMatter = {
 };
 
 type TProps = {
-  writings: PostMatter[]
-}
+  writings: PostMatter[];
+};
 
 const Writings: React.FC<TProps> = ({ writings }) => {
-  console.log(writings);
-
   return (
     <React.Fragment>
       <Meta
@@ -30,14 +29,18 @@ const Writings: React.FC<TProps> = ({ writings }) => {
           writings, a collection of &quot;things&quot; that I find
           interesting...
         </Title>
-        Hello
+        <div className="flex flex-col space-y-12">
+          {writings.map((post: PostMatter) => (
+            <PostCard key={post.slug} post={post} />
+          ))}
+        </div>
       </Layout>
     </React.Fragment>
   );
 };
 
 export async function getStaticProps() {
-  const writings = getAllFilesFrontMatter("writings");
+  const writings = getAllFilesFrontMatter("writing");
 
   return {
     props: {
