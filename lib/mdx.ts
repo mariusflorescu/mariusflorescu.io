@@ -2,7 +2,6 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
-import mdxPrism from "mdx-prism";
 import readingTime from "reading-time";
 
 type PostMatter = {
@@ -46,11 +45,7 @@ const getPostBySlug = async (type:string, slug: string) => {
 
     const {data, content} = matter(source);
 
-    const mdxSource = await serialize(content, {
-        mdxOptions: {
-            rehypePlugins: [mdxPrism]
-        }
-    });
+    const mdxSource = await serialize(content, {});
 
     return {
         mdxSource,
