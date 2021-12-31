@@ -11,7 +11,7 @@ const Home: NextPage = () => {
           versatile fullstack developer, building performant web applications
         </GradientText>
 
-        {/* <b>hi there, I'm Marius,</b>
+        <b>hi there, I'm Marius,</b>
         <p>
           a fullstack developer and student who <em>loves</em> building and
           experimenting modern solutions using cutting-edge technologies.
@@ -44,7 +44,7 @@ const Home: NextPage = () => {
           Mainly building web applications with Go, Node, React and Next.js.{" "}
           <br />
           Interested in <em>learning</em> Rust and Swift.
-        </p> */}
+        </p>
       </div>
     </Layout>
   );

@@ -1,9 +1,8 @@
-import React from "react";
 import { GithubIcon, TwitterIcon, LinkedinIcon } from "../../icons";
 
 const Footer = () => {
   return (
-    <React.Fragment>
+    <div className="py-6">
       <hr className="text-neutral-800 my-4" />
       <div className="w-full flex justify-between items-center">
         <span className="text-neutral-400 font-merri text-sm">
@@ -24,7 +23,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
