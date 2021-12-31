@@ -1,4 +1,5 @@
 import { useTheme } from "next-themes";
+import Tooltip from "@components/Tooltip";
 import { SunIcon, MoonIcon } from "@icons";
 
 const ThemeChanger = () => {
@@ -8,16 +9,18 @@ const ThemeChanger = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
-  return theme === "light" ? (
-    <SunIcon
-      onClick={() => handleThemeChange()}
-      className="cursor-pointer w-5 h-5 text-neutral-600 transition-colors duration-200 hover:text-neutral-400"
-    />
-  ) : (
-    <MoonIcon
-      onClick={() => handleThemeChange()}
-      className="cursor-pointer w-5 h-5 text-neutral-600 transition-colors duration-200 hover:text-neutral-400"
-    />
+  return (
+    <Tooltip text="Switch theme">
+      {theme === "light" ? (
+        <button onClick={() => handleThemeChange()}>
+          <SunIcon className="cursor-pointer w-5 h-5 text-neutral-600 transition-colors duration-200 hover:text-neutral-400" />
+        </button>
+      ) : (
+        <button onClick={() => handleThemeChange()}>
+          <MoonIcon className="cursor-pointer w-5 h-5 text-neutral-600 transition-colors duration-200 hover:text-neutral-400" />
+        </button>
+      )}
+    </Tooltip>
   );
 };
 
