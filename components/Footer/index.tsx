@@ -1,4 +1,4 @@
-import { GithubIcon, TwitterIcon, LinkedinIcon } from "../../icons";
+import { GithubIcon, TwitterIcon, LinkedinIcon } from "@icons";
 
 const Footer = () => {
   return (

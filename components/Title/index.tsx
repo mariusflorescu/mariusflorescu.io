@@ -1,5 +1,5 @@
 import React from "react";
-import GradientText from "../GradientText";
+import GradientText from "@components/GradientText";
 
 const Title: React.FC = ({ children }) => {
   return (

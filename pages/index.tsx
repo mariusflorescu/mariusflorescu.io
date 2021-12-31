@@ -1,9 +1,9 @@
 import React from "react";
 import type { NextPage } from "next";
-import Layout from "../layout/Main";
-import Meta from "../components/Meta";
-import Title from "../components/Title";
-import Link from "../components/Link";
+import Layout from "@layout/Main";
+import Meta from "@components/Meta";
+import Title from "@components/Title";
+import Link from "@components/Link";
 
 const Home: NextPage = () => {
   return (

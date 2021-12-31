@@ -1,5 +1,5 @@
 import { useTheme } from "next-themes";
-import { SunIcon, MoonIcon } from "../../icons";
+import { SunIcon, MoonIcon } from "@icons";
 
 const ThemeChanger = () => {
   const { theme, setTheme } = useTheme();

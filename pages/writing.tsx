@@ -1,9 +1,9 @@
 import React from "react";
-import { getAllFilesFrontMatter } from "../lib/mdx";
-import Meta from "../components/Meta";
-import Layout from "../layout/Main";
-import Title from "../components/Title";
-import PostCard from "../components/PostCard";
+import { getAllFilesFrontMatter } from "@lib/mdx";
+import Meta from "@components/Meta";
+import Layout from "@layout/Main";
+import Title from "@components/Title";
+import PostCard from "@components/PostCard";
 
 type PostMatter = {
   title: string;
