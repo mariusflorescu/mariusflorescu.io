@@ -4,6 +4,6 @@
 
 @layer base {
   #__next {
-    @apply min-h-full isolate;
+    @apply h-full isolate;
   }
 }
