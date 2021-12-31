@@ -1,7 +1,7 @@
 import React from "react";
 import ContextMenu from "@components/ContextMenu";
 
-const codeBlock = (
+const CodeBlock = (
   props: React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLPreElement>,
     HTMLPreElement
@@ -33,7 +33,7 @@ const inlineCode = (
 );
 
 const MDXComponents = {
-  pre: codeBlock,
+  pre: CodeBlock,
   inlineCode,
 };
 
