@@ -1,7 +1,49 @@
+import React from "react";
+import { getAllFilesFrontMatter } from "../lib/mdx";
+import Meta from "../components/Meta";
 import Layout from "../layout/Main";
+import Title from "../components/Title";
 
-const Writings = () => {
-  return <Layout>Hello</Layout>;
+type PostMatter = {
+  title: string;
+  publishedAt: string;
+  description: string;
+  slug: string;
 };
+
+type TProps = {
+  writings: PostMatter[]
+}
+
+const Writings: React.FC<TProps> = ({ writings }) => {
+  console.log(writings);
+
+  return (
+    <React.Fragment>
+      <Meta
+        title="writings"
+        description='writings, a collection of "things" that I find
+          interesting...'
+      />
+      <Layout>
+        <Title>
+          writings, a collection of &quot;things&quot; that I find
+          interesting...
+        </Title>
+        Hello
+      </Layout>
+    </React.Fragment>
+  );
+};
+
+export async function getStaticProps() {
+  const writings = getAllFilesFrontMatter("writings");
+
+  return {
+    props: {
+      writings,
+    },
+  };
+}
 
 export default Writings;
