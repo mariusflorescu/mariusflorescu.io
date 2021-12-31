@@ -3,7 +3,7 @@ import { GithubIcon, TwitterIcon, LinkedinIcon } from "@icons";
 const Footer = () => {
   return (
     <div className="py-6">
-      <hr className="text-neutral-200 dark:text-neutral-800 my-4" />
+      <hr className="border-t border-neutral-200 dark:border-neutral-700 my-4" />
       <div className="w-full flex justify-between items-center">
         <span className="text-neutral-500 dark:text-neutral-400 font-merri text-sm">
           find your inner peace.
