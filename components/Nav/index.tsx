@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Item from "./Item";
+import ThemeChanger from "../ThemeChanger";
 
 type TRoute = {
   name: string;
@@ -22,6 +23,9 @@ const Nav = () => {
             {route.name}
           </Item>
         ))}
+        <li>
+          <ThemeChanger />
+        </li>
       </ul>
     </nav>
   );
