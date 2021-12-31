@@ -27,7 +27,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           ></link>
         </Head>
-        <body className="h-full font-mulish  bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50">
+        <body className="h-full font-mulish  bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50 selection:bg-neutral-700 selection:text-neutral-100  selection:dark:bg-neutral-200 selection:dark:text-neutral-800">
           <Main />
           <NextScript />
         </body>
