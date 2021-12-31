@@ -9,15 +9,24 @@ const Footer = () => {
           find your inner peace.
         </span>
         <div className="flex space-x-4">
-          <a href="https://github.com/mariusflorescu" target="_blank">
+          <a
+            href="https://github.com/mariusflorescu"
+            target="_blank"
+            rel="noreferrer"
+          >
             <GithubIcon className="cursor-pointer w-5 h-5 text-neutral-600 transition-colors duration-200 hover:text-neutral-400" />
           </a>
-          <a href="https://twitter.com/_mariusflorescu" target="_blank">
+          <a
+            href="https://twitter.com/_mariusflorescu"
+            target="_blank"
+            rel="noreferrer"
+          >
             <TwitterIcon className="cursor-pointer w-5 h-5 text-neutral-600 transition-colors duration-200 hover:text-neutral-400" />
           </a>
           <a
             href="https://www.linkedin.com/in/marius-adrian-florescu-141aaa209/"
             target="_blank"
+            rel="noreferrer"
           >
             <LinkedinIcon className="cursor-pointer w-5 h-5 text-neutral-600 transition-colors duration-200 hover:text-neutral-400" />
           </a>
