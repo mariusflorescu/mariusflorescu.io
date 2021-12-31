@@ -24,7 +24,7 @@ const Footer = () => {
             <TwitterIcon className="cursor-pointer w-5 h-5 text-neutral-600 transition-colors duration-200 hover:text-neutral-400" />
           </a>
           <a
-            href="https://www.linkedin.com/in/marius-adrian-florescu-141aaa209/"
+            href="https://www.linkedin.com/in/marius-florescu-141aaa209/"
             target="_blank"
             rel="noreferrer"
           >
