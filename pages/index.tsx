@@ -15,7 +15,7 @@ const Home: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
   return (
     <React.Fragment>
       <Meta title="Marius Florescu" description={frontMatter.description} />
-      <Title style={{ textDecoration: "none" }}>{frontMatter.title}</Title>
+      <Title>{frontMatter.title}</Title>
       <MDXRemote {...mdxSource} />
     </React.Fragment>
   );
