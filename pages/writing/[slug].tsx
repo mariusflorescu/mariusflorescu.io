@@ -22,7 +22,7 @@ const WritingPost: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
   return (
     <React.Fragment>
       <Meta title={frontMatter.title} description={frontMatter.description} />
-      <Title style={{ textDecoration: "none" }}>{frontMatter.title}</Title>
+      <Title>{frontMatter.title}</Title>
       <PostDetails
         publishedAt={frontMatter.publishedAt}
         readingTime={frontMatter.readingTime.text}
