@@ -12,11 +12,11 @@ const ThemeChanger = () => {
   return (
     <Tooltip text="Switch theme">
       {theme === "light" ? (
-        <button onClick={() => handleThemeChange()}>
+        <button onClick={() => handleThemeChange()} aria-label="Theme switcher">
           <SunIcon className="cursor-pointer w-5 h-5 text-neutral-600 transition-colors duration-200 hover:text-neutral-400" />
         </button>
       ) : (
-        <button onClick={() => handleThemeChange()}>
+        <button onClick={() => handleThemeChange()} aria-label="Theme switcher">
           <MoonIcon className="cursor-pointer w-5 h-5 text-neutral-600 transition-colors duration-200 hover:text-neutral-400" />
         </button>
       )}

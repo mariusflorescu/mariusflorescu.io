@@ -13,6 +13,7 @@ const Footer = () => {
             href="https://github.com/mariusflorescu"
             target="_blank"
             rel="noreferrer"
+            aria-label="Github"
           >
             <GithubIcon className="cursor-pointer w-5 h-5 text-neutral-600 transition-colors duration-200 hover:text-neutral-400" />
           </a>
@@ -20,6 +21,7 @@ const Footer = () => {
             href="https://twitter.com/_mariusflorescu"
             target="_blank"
             rel="noreferrer"
+            aria-label="Twitter"
           >
             <TwitterIcon className="cursor-pointer w-5 h-5 text-neutral-600 transition-colors duration-200 hover:text-neutral-400" />
           </a>
@@ -27,6 +29,7 @@ const Footer = () => {
             href="https://www.linkedin.com/in/marius-florescu-141aaa209/"
             target="_blank"
             rel="noreferrer"
+            aria-label="Linkedin"
           >
             <LinkedinIcon className="cursor-pointer w-5 h-5 text-neutral-600 transition-colors duration-200 hover:text-neutral-400" />
           </a>
