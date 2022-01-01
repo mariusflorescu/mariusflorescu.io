@@ -1,3 +1,5 @@
+type PostStatus = "public" | "not listed" | "private"
+
 type ReadingTime = {
   minutes: number;
   text: string;
@@ -9,6 +11,7 @@ type PostMatter = {
   title: string;
   publishedAt: string;
   description: string;
+  status: PostStatus;
   slug: string;
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import type { NextPage } from "next";
 import type { PostMatter } from "@types";
-import { getAllFilesFrontMatter } from "@lib/mdx";
+import { getListOfFilesFrontMatter } from "@lib/mdx";
 import Meta from "@components/Meta";
 import PostCard from "@components/PostCard";
 
@@ -30,7 +30,7 @@ const Writings: NextPage<TProps> = ({ writings }) => {
 };
 
 export async function getStaticProps() {
-  const writings = getAllFilesFrontMatter("writing");
+  const writings = getListOfFilesFrontMatter("writing");
 
   return {
     props: {
