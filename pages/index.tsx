@@ -4,7 +4,6 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { FrontMatter } from "@types";
 import { getPostBySlug } from "@lib/mdx";
 import Meta from "@components/Meta";
-import Window from "@components/Window";
 
 type TProps = {
   mdxSource: MDXRemoteSerializeResult;
@@ -17,9 +16,6 @@ const Home: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
       <Meta title="Marius Florescu" description={frontMatter.description} />
       <h1>{frontMatter.title}</h1>
       <MDXRemote {...mdxSource} />
-      <Window title="Test">
-        <div className="w-32 h-32 bg-pink-400 rounded" />
-      </Window>
     </React.Fragment>
   );
 };
