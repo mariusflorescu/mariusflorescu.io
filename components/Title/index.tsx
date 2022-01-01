@@ -1,5 +1,4 @@
 import React from "react";
-import GradientText from "@components/GradientText";
 
 const Title: React.FC<React.HTMLAttributes<HTMLHeadingElement>> = ({
   children,
