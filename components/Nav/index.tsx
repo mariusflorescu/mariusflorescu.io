@@ -17,7 +17,7 @@ const Nav = () => {
       <span className="opacity-0 md:opacity-100 text-neutral-600 dark:text-neutral-400 font-playfair text-sm">
         {title === "" ? "home" : title}
       </span>
-      <ul className="list-none flex justify-end items-center space-x-6 font-semibold">
+      <ul className="list-none flex justify-end items-center space-x-6 font-medium">
         {routes.map((route: TRoute) => (
           <Item key={route.name} href={route.href} passHref>
             {route.name}
@@ -39,10 +39,6 @@ const routes: TRoute[] = [
   {
     name: "writing",
     href: "/writing",
-  },
-  {
-    name: "contact",
-    href: "/contact",
   },
 ];
 

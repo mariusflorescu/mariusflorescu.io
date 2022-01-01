@@ -12,7 +12,7 @@ module.exports = {
       },
       fontFamily: {
         playfair: ["Playfair Display", "serif"],
-        mulish: ["Mulish", "system-ui", "serif"],
+        inter: ["Inter", "system-ui", "sans-serif"],
       },
     },
   },

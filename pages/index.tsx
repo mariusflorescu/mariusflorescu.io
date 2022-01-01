@@ -55,6 +55,29 @@ const Home: NextPage = () => {
           watching a crazy load of youtube vesion and hanging out with my
           friends.
         </p>
+        <h2>Connect</h2>
+        <p>
+          Do you want to connect? Feel free to reach me at{" "}
+          <a
+            className="cursor-pointer"
+            href="mailto:hi@mariusflorescu.io"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Send email"
+          >
+            hi@mariusflorescu.io
+          </a>{" "}
+          or on twitter{" "}
+          <a
+            className="cursor-pointer"
+            href="https://twitter.com/_mariusflorescu"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Twitter"
+          >
+            @_mariusflorescu
+          </a>
+        </p>
       </Layout>
     </React.Fragment>
   );

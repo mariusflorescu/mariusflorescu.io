@@ -23,11 +23,11 @@ class MyDocument extends Document {
             crossOrigin=""
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap"
             rel="stylesheet"
           />
         </Head>
-        <body className="h-full font-mulish  bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50 selection:bg-neutral-700 selection:text-neutral-100  selection:dark:bg-neutral-200 selection:dark:text-neutral-800">
+        <body className="h-full font-inter  bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50 selection:bg-neutral-700 selection:text-neutral-100  selection:dark:bg-neutral-200 selection:dark:text-neutral-800">
           <Main />
           <NextScript />
         </body>
