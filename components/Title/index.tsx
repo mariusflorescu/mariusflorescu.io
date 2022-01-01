@@ -1,16 +1,18 @@
 import React from "react";
 import GradientText from "@components/GradientText";
 
-const Title: React.FC<
-  React.HTMLAttributes<
-    HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement
-  >
-> = ({ children, ...props }) => {
+const Title: React.FC<React.HTMLAttributes<HTMLHeadingElement>> = ({
+  children,
+  ...props
+}) => {
   return (
     <div className="w-full prose prose-neutral dark:prose-invert">
-      <GradientText as="h1" className="py-12" {...props}>
+      <h1
+        className="py-12 text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-pink-400 to-purple-400"
+        {...props}
+      >
         {children}
-      </GradientText>
+      </h1>
     </div>
   );
 };
