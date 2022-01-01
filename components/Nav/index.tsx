@@ -14,11 +14,11 @@ const Nav = () => {
 
   return (
     <nav className="w-full py-6 flex justify-between items-center">
-      <span className="opacity-0 md:opacity-100 prose prose-neutral dark:prose-invert">
+      <div className="opacity-0 md:opacity-100 prose prose-neutral dark:prose-invert">
         <em className="text-neutral-600 dark:text-neutral-400 text-sm">
           {title === "" ? "home" : title}
         </em>
-      </span>
+      </div>
       <ul className="list-none flex justify-end items-center space-x-6 font-medium">
         {routes.map((route: TRoute) => (
           <Item key={route.name} href={route.href} passHref>
