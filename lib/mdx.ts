@@ -3,13 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import readingTime from "reading-time";
-
-type PostMatter = {
-  title: string;
-  publishedAt: string;
-  description: string;
-  slug: string;
-};
+import type {PostMatter} from 'types'
 
 type PostMatterWithoutSlug = Omit<PostMatter, "slug">;
 
@@ -40,8 +34,8 @@ const getAllFilesFrontMatter = (type: string) => {
     return allFilesFrontMatter.sort((a:PostMatter, b:PostMatter) => b.publishedAt.localeCompare(a.publishedAt))
 }
 
-const getPostBySlug = async (type:string, slug: string) => {
-    const source = slug ? fs.readFileSync(path.join(root, "posts", type, `${slug}.mdx`), 'utf8') : fs.readFileSync(path.join(root, "posts", `${type}.mdx`, "utf8"));
+const getPostBySlug = async (type:string, slug?: string) => {
+    const source = slug ? fs.readFileSync(path.join(root, "posts", type, `${slug}.mdx`), 'utf8') : fs.readFileSync(path.join(root, "posts", `${type}.mdx`), "utf8");
 
     const {data, content} = matter(source);
 

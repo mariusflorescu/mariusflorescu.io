@@ -1,29 +1,14 @@
 import React from "react";
+import type { NextPage } from "next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import type { FrontMatter } from "@types";
 import { getPosts, getPostBySlug } from "@lib/mdx";
-import MarkdownLayout from "@layout/Markdown";
 import Meta from "@components/Meta";
 import Title from "@components/Title";
 
-type ReadingTime = {
-  minutes: number;
-  text: string;
-  time: number;
-  words: number;
-};
-
-type PostMatter = {
-  title: string;
-  publishedAt: string;
-  description: string;
-  slug: string;
-};
-
 type TProps = {
   mdxSource: MDXRemoteSerializeResult;
-  frontMatter: PostMatter & {
-    readingTime: ReadingTime;
-  };
+  frontMatter: FrontMatter;
 };
 
 type TParams = {
@@ -32,14 +17,12 @@ type TParams = {
   };
 };
 
-const WritingPost: React.FC<TProps> = ({ mdxSource, frontMatter }) => {
+const WritingPost: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
   return (
     <React.Fragment>
       <Meta title={frontMatter.title} description={frontMatter.description} />
-      <MarkdownLayout>
-        <Title style={{ textDecoration: "none" }}>{frontMatter.title}</Title>
-        <MDXRemote {...mdxSource} />
-      </MarkdownLayout>
+      <Title style={{ textDecoration: "none" }}>{frontMatter.title}</Title>
+      <MDXRemote {...mdxSource} />
     </React.Fragment>
   );
 };

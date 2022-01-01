@@ -8,7 +8,8 @@
       "@lib/*": ["./lib/*"],
       "@layout/*": ["./layout/*"],
       "@posts/*": ["./posts/*"],
-      "@icons": ["./icons/index.tsx"]
+      "@icons": ["./icons/index.tsx"],
+      "@types": ["./types/index.ts"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

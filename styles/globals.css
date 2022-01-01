@@ -7,3 +7,41 @@
     @apply h-full isolate;
   }
 }
+
+@layer utilities {
+  .prose h1 {
+    @apply underline underline-offset-2 text-5xl;
+  }
+
+  .prose h2 {
+    @apply underline underline-offset-2;
+  }
+
+  .prose h3 {
+    @apply underline underline-offset-2;
+  }
+
+  .prose h4 {
+    @apply underline underline-offset-2;
+  }
+
+  .prose pre {
+    @apply bg-black text-neutral-100;
+  }
+
+  .prose li {
+    @apply my-1;
+  }
+
+  .prose hr {
+    @apply border-t border-neutral-200 dark:border-neutral-700 my-6;
+  }
+
+  .prose em {
+    @apply font-playfair;
+  }
+
+  .prose a {
+    @apply after:content-['↗'] after:ml-0.5 decoration-2 decoration-transparent transition-all duration-200 text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 hover:dark:text-neutral-50 hover:decoration-neutral-800 hover:dark:decoration-neutral-50;
+  }
+}
