@@ -38,7 +38,7 @@
   }
 
   .prose em {
-    @apply font-playfair;
+    @apply font-playfair font-normal italic;
   }
 
   .prose a {
