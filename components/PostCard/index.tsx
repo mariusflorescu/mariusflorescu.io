@@ -23,7 +23,7 @@ const PostCard: React.FC<TProps> = ({ post }) => {
           <h2 className="m-0 underline underline-offset-2 decoration-neutral-800 dark:decoration-neutral-200">
             {post.title}
           </h2>
-          <p className="my-2">{post.description}</p>
+          <p className="my-2 text-sm">{post.description}</p>
         </div>
       </div>
     </Link>
