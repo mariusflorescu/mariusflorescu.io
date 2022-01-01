@@ -17,8 +17,8 @@ const Writings: NextPage<TProps> = ({ writings }) => {
         description="writing, a collection of thoughts and ideas, elaborated in a clumsy way..."
       />
       <h1>
-        writing, a collection of thoughts and ideas, elaborated in a clumsy way
-        by me...
+        writing, a collection of thoughts and ideas, elaborated in a clumsy
+        way...
       </h1>
       <div className="flex flex-col space-y-12">
         {writings.map((post: PostMatter) => (
