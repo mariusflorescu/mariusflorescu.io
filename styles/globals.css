@@ -10,7 +10,7 @@
 
 @layer utilities {
   .prose h1 {
-    @apply underline underline-offset-2 text-5xl;
+    @apply underline underline-offset-2 text-5xl font-playfair;
   }
 
   .prose h2 {
