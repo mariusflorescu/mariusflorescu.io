@@ -9,29 +9,38 @@ type PostMatterWithoutSlug = Omit<PostMatter, "slug">;
 
 const root = process.cwd()
 
-const getPosts = (type: string) => fs.readdirSync(path.join(root, "posts", type));
+const getFilesFrontMatter = (type:string, files: string[]) => {
+        return files.reduce((allPosts: PostMatter[], postSlug: string) : PostMatter[] => {
+            const source = fs.readFileSync(
+                path.join(root, "posts", type, postSlug),
+                "utf8"
+            );
 
-const getAllFilesFrontMatter = (type: string) => {
+            const {data} = matter(source);
+
+            return [
+                {
+                    ...(data as PostMatterWithoutSlug),
+                    slug: postSlug.replace(".mdx","")
+                },
+                ...allPosts
+            ];
+        },[]).filter((fileFrontMatter: PostMatter) => fileFrontMatter.status !== "private")
+}
+
+const getPosts = (type: string) => {
+    const files = fs.readdirSync(path.join(root, "posts", type));
+    const filesFrontMatter = getFilesFrontMatter(type, files)
+
+    return files.filter((filename:string) => filesFrontMatter.some((fileFrontMatter:PostMatter) => filename.startsWith(fileFrontMatter.slug)))
+};
+
+const getListOfFilesFrontMatter = (type: string) => {
     const files = getPosts(type);
 
-    const allFilesFrontMatter = files.reduce((allPosts: PostMatter[], postSlug: string) : PostMatter[] => {
-        const source = fs.readFileSync(
-            path.join(root, "posts", type, postSlug),
-            "utf8"
-        );
+    const allFilesFrontMatter = getFilesFrontMatter(type, files)
 
-        const {data} = matter(source);
-
-        return [
-            {
-                ...(data as PostMatterWithoutSlug),
-                slug: postSlug.replace(".mdx","")
-            },
-            ...allPosts
-        ];
-    },[])
-
-    return allFilesFrontMatter.sort((a:PostMatter, b:PostMatter) => b.publishedAt.localeCompare(a.publishedAt))
+    return allFilesFrontMatter.filter((fileFrontMatter: PostMatter) => fileFrontMatter.status === "public").sort((a:PostMatter, b:PostMatter) => b.publishedAt.localeCompare(a.publishedAt))
 }
 
 const getPostBySlug = async (type:string, slug?: string) => {
@@ -52,4 +61,4 @@ const getPostBySlug = async (type:string, slug?: string) => {
     }
 }
 
-export {getPosts, getAllFilesFrontMatter, getPostBySlug}
+export {getPosts, getListOfFilesFrontMatter, getPostBySlug}
