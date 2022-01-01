@@ -13,7 +13,7 @@ const Writings: NextPage<TProps> = ({ writings }) => {
   return (
     <React.Fragment>
       <Meta
-        title="writings"
+        title="Writing"
         description="writing, a collection of thoughts and ideas, elaborated in a clumsy way..."
       />
       <h1>
