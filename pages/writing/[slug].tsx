@@ -5,6 +5,7 @@ import type { FrontMatter } from "@types";
 import { getPosts, getPostBySlug } from "@lib/mdx";
 import Meta from "@components/Meta";
 import Title from "@components/Title";
+import PostDetails from "@components/PostDetails";
 
 type TProps = {
   mdxSource: MDXRemoteSerializeResult;
@@ -22,6 +23,10 @@ const WritingPost: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
     <React.Fragment>
       <Meta title={frontMatter.title} description={frontMatter.description} />
       <Title style={{ textDecoration: "none" }}>{frontMatter.title}</Title>
+      <PostDetails
+        publishedAt={frontMatter.publishedAt}
+        readingTime={frontMatter.readingTime.text}
+      />
       <MDXRemote {...mdxSource} />
     </React.Fragment>
   );
