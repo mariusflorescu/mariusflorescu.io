@@ -9,6 +9,10 @@
 }
 
 @layer utilities {
+  .transform-middle {
+    transform: translateY(-50%, 50%);
+  }
+
   .prose {
     @apply max-w-full;
   }
