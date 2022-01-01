@@ -5,6 +5,13 @@ import MarkdownLayout from "@layout/Markdown";
 import Meta from "@components/Meta";
 import Title from "@components/Title";
 
+type ReadingTime = {
+  minutes: number;
+  text: string;
+  time: number;
+  words: number;
+};
+
 type PostMatter = {
   title: string;
   publishedAt: string;
@@ -15,8 +22,7 @@ type PostMatter = {
 type TProps = {
   mdxSource: MDXRemoteSerializeResult;
   frontMatter: PostMatter & {
-    wordCount: number;
-    words: number;
+    readingTime: ReadingTime;
   };
 };
 

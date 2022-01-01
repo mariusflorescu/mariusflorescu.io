@@ -21,13 +21,12 @@ const Writings: React.FC<TProps> = ({ writings }) => {
     <React.Fragment>
       <Meta
         title="writings"
-        description='writings, a collection of "things" that I find
-          interesting...'
+        description="writing, a collection of thoughts and ideas, elaborated in a clumsy way by me..."
       />
       <Layout>
         <Title>
-          writings, a collection of &quot;things&quot; that I find
-          interesting...
+          writing, a collection of thoughts and ideas, elaborated in a clumsy
+          way by me...
         </Title>
         <div className="flex flex-col space-y-12">
           {writings.map((post: PostMatter) => (

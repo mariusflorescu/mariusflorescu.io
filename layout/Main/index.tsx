@@ -5,9 +5,9 @@ import Footer from "../../components/Footer";
 
 const Layout: React.FC = ({ children }) => (
   <Container>
-    <div className="h-full flex flex-col">
+    <div className="w-full h-full flex flex-col">
       <Nav />
-      <div className="py-3 grow prose prose-neutral dark:prose-invert">
+      <div className="w-full py-3 grow prose prose-neutral dark:prose-invert prose-em:font-playfair">
         {children}
       </div>
       <Footer />

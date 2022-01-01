@@ -11,7 +11,7 @@ module.exports = {
         center: true,
       },
       fontFamily: {
-        merri: ["Merriweather", "system-ui", "serif"],
+        playfair: ["Playfair Display", "serif"],
         mulish: ["Mulish", "system-ui", "serif"],
       },
     },

@@ -7,7 +7,7 @@ const Title: React.FC<
   >
 > = ({ children, ...props }) => {
   return (
-    <GradientText as="h1" className="font-merri py-12" {...props}>
+    <GradientText as="h1" className="font-playfair py-12" {...props}>
       {children}
     </GradientText>
   );
