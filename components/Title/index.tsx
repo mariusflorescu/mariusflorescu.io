@@ -7,9 +7,11 @@ const Title: React.FC<
   >
 > = ({ children, ...props }) => {
   return (
-    <GradientText as="h1" className="py-12" {...props}>
-      {children}
-    </GradientText>
+    <div className="w-full prose prose-neutral dark:prose-invert">
+      <GradientText as="h1" className="py-12" {...props}>
+        {children}
+      </GradientText>
+    </div>
   );
 };
 
