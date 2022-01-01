@@ -17,6 +17,9 @@ const Home: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
       <Meta title="Marius Florescu" description={frontMatter.description} />
       <h1>{frontMatter.title}</h1>
       <MDXRemote {...mdxSource} />
+      <Window title="Test">
+        <div className="w-32 h-32 bg-pink-400 rounded" />
+      </Window>
     </React.Fragment>
   );
 };
