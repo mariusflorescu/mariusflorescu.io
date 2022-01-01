@@ -14,7 +14,7 @@ const Writings: NextPage<TProps> = ({ writings }) => {
     <React.Fragment>
       <Meta
         title="writings"
-        description="writing, a collection of thoughts and ideas, elaborated in a clumsy way by me..."
+        description="writing, a collection of thoughts and ideas, elaborated in a clumsy way..."
       />
       <h1>
         writing, a collection of thoughts and ideas, elaborated in a clumsy way
