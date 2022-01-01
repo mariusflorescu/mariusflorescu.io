@@ -24,7 +24,7 @@ const Meta: React.FC<TProps> = ({
         <meta name="og:title" content={title} />
         <meta name="description" content={description} />
         <meta name="og:description" content={description} />
-        <meta name="og:url" content="https://mariusflorescu.vercel.app" />
+        <meta name="og:url" content="https://mariusflorescu.io" />
         <meta httpEquiv="Content-Language" content="en" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@_mariusflorescu" />
@@ -35,7 +35,7 @@ const Meta: React.FC<TProps> = ({
         title={title}
         description={description}
         openGraph={{
-          url: "https//mariusflorescu.vercel.app",
+          url: "https//mariusflorescu.io",
           title,
           description,
           site_name: "MariusFlorescu",
