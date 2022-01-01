@@ -11,8 +11,8 @@ module.exports = {
         center: true,
       },
       fontFamily: {
-        playfair: ["Playfair Display", "serif"],
-        inter: ["Inter", "system-ui", "sans-serif"],
+        playfair: ["'Playfair Display'", "serif"],
+        inter: ["'Inter'", "system-ui", "sans-serif"],
       },
     },
   },
