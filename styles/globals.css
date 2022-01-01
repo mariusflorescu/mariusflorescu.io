@@ -4,7 +4,7 @@
 
 @layer base {
   #__next {
-    @apply h-full isolate;
+    @apply min-h-full isolate;
   }
 }
 
@@ -23,6 +23,14 @@
 
   .prose h4 {
     @apply underline underline-offset-2;
+  }
+
+  .prose p {
+    @apply text-neutral-600 dark:text-neutral-300;
+  }
+
+  .prose blockquote > p {
+    @apply before:content-[''] after:content-[''] font-playfair italic font-normal;
   }
 
   .prose pre {
