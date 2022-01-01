@@ -4,7 +4,6 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { FrontMatter } from "@types";
 import { getPosts, getPostBySlug } from "@lib/mdx";
 import Meta from "@components/Meta";
-import Title from "@components/Title";
 import PostDetails from "@components/PostDetails";
 
 type TProps = {
@@ -22,7 +21,7 @@ const WritingPost: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
   return (
     <React.Fragment>
       <Meta title={frontMatter.title} description={frontMatter.description} />
-      <Title>{frontMatter.title}</Title>
+      <h1>{frontMatter.title}</h1>
       <PostDetails
         publishedAt={frontMatter.publishedAt}
         readingTime={frontMatter.readingTime.text}
