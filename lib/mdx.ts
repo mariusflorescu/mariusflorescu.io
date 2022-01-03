@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
+import remarkPrism from "remark-prism";
 import readingTime from "reading-time";
 import type {PostMatter} from 'types'
 
@@ -39,7 +40,11 @@ const getPostBySlug = async (type:string, slug?: string) => {
 
     const {data, content} = matter(source);
 
-    const mdxSource = await serialize(content, {});
+    const mdxSource = await serialize(content, {
+        mdxOptions: {
+            remarkPlugins: [remarkPrism]
+        }
+    });
 
     return {
         mdxSource,

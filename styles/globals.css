@@ -41,8 +41,12 @@
     @apply before:content-[''] after:content-[''] font-playfair italic font-normal;
   }
 
-  .prose pre {
-    @apply bg-black text-neutral-100;
+  .prose code[class*="language-"] {
+    @apply bg-neutral-100 text-neutral-900 dark:bg-black dark:text-neutral-50;
+  }
+
+  .prose pre[class*="language-"] {
+    @apply bg-neutral-100 text-neutral-900 dark:bg-black dark:text-neutral-50;
   }
 
   .prose li {
