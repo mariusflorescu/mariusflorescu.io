@@ -9,10 +9,6 @@
 }
 
 @layer utilities {
-  .transform-middle {
-    transform: translateY(-50%, 50%);
-  }
-
   .prose {
     @apply max-w-full;
   }
@@ -34,19 +30,15 @@
   }
 
   .prose p {
-    @apply text-neutral-600 dark:text-neutral-300;
+    @apply text-gray-600 dark:text-gray-300;
   }
 
   .prose blockquote > p {
     @apply before:content-[''] after:content-[''] font-playfair italic font-normal;
   }
 
-  .prose code[class*="language-"] {
-    @apply bg-neutral-100 text-neutral-900 dark:bg-black dark:text-neutral-50;
-  }
-
   .prose pre[class*="language-"] {
-    @apply bg-neutral-100 text-neutral-900 dark:bg-black dark:text-neutral-50;
+    @apply bg-gray-100 text-gray-900 dark:bg-gray-1000 dark:text-gray-50;
   }
 
   .prose li {
@@ -54,7 +46,7 @@
   }
 
   .prose hr {
-    @apply border-t border-neutral-200 dark:border-neutral-700 my-6;
+    @apply border-t border-gray-200 dark:border-gray-700 my-6;
   }
 
   .prose em {
@@ -62,6 +54,6 @@
   }
 
   .prose a {
-    @apply after:content-['↗'] after:ml-0.5 decoration-2 decoration-transparent transition-all duration-200 text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 hover:dark:text-neutral-50 hover:decoration-neutral-800 hover:dark:decoration-neutral-50;
+    @apply after:content-['↗'] after:ml-0.5 decoration-2 decoration-transparent transition-all duration-200 text-gray-500 dark:text-gray-400 hover:text-gray-800 hover:dark:text-gray-50 hover:decoration-gray-800 hover:dark:decoration-gray-50;
   }
 }

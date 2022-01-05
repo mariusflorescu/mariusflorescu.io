@@ -15,11 +15,11 @@ const ContextMenu: React.FC<TProps> = ({ children, textToCopy }) => {
       <ContextMenuPrimitive.Trigger>{children}</ContextMenuPrimitive.Trigger>
       <ContextMenuPrimitive.Content
         sideOffset={5}
-        className="bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50 p-1 rounded shadow text-sm"
+        className="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-50 p-1 rounded shadow text-sm"
       >
         <ContextMenuPrimitive.Item
           onClick={() => handleCopyToClipboard()}
-          className="outline-none cursor-pointer p-2 hover:bg-neutral-200 hover:dark:bg-neutral-800 hover:rounded"
+          className="outline-none cursor-pointer p-2 hover:bg-gray-200 hover:dark:bg-gray-800 hover:rounded"
         >
           Copy to clipboard
         </ContextMenuPrimitive.Item>

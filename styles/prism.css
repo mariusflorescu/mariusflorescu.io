@@ -17,10 +17,10 @@
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  @apply text-neutral-500;
+  @apply text-gray-500;
 }
 .token.punctuation {
-  @apply text-neutral-400;
+  @apply text-gray-400;
 }
 
 .token.number {
