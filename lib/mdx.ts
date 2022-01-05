@@ -42,7 +42,7 @@ const getPostBySlug = async (type:string, slug?: string) => {
 
     const mdxSource = await serialize(content, {
         mdxOptions: {
-            remarkPlugins: [remarkPrism]
+            remarkPlugins: [remarkPrism],
         }
     });
 

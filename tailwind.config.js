@@ -17,7 +17,7 @@ module.exports = {
         inter: ["'Inter'", "system-ui", "sans-serif"],
       },
       colors: {
-        gray: colors.gray,
+        gray: colors.neutral,
         "gray-1000": "#121212",
       },
     },
