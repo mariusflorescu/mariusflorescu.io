@@ -30,18 +30,18 @@ const CodeBlock = (
 
   return (
     <div>
-      <div className="rounded-t-lg flex justify-end p-2 bg-gray-1000">
+      <div className="rounded-t-md flex justify-end px-2 pt-2 bg-gray-100 dark:bg-gray-1000">
         <button
           onClick={() => handleCopyToClipboard()}
-          className="group cursor-pointer flex gap-1 items-center py-1 px-2 rounded-md transition-colors duration-200 hover:bg-gray-800"
+          className="group cursor-pointer flex gap-1 items-center py-1 px-2 rounded-md transition-colors duration-200 hover:bg-gray-200 hover:dark:bg-gray-800"
         >
           {isCopied ? (
-            <CheckIcon className="w-3 h-3 texr-gray-400 transition-colors duration-200 group-hover:text-gray-50" />
+            <CheckIcon className="w-3 h-3 text-gray-500 dark:text-gray-400 transition-colors duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-200" />
           ) : (
-            <CopyIcon className="w-3 h-3 texr-gray-400 transition-colors duration-200 group-hover:text-gray-50" />
+            <CopyIcon className="w-3 h-3 text-gray-500 dark:text-gray-400 transition-colors duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-200" />
           )}
-          <span className="text-xs text-gray-400 transition-colors duration-200 group-hover:text-gray-50">
-            Copy source
+          <span className="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-200">
+            {isCopied ? "Copied" : "Copy"} source
           </span>
         </button>
       </div>

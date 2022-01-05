@@ -38,7 +38,7 @@
   }
 
   .prose pre[class*="language-"] {
-    @apply mt-0 rounded-t-none bg-gray-100 text-gray-900 dark:bg-gray-1000 dark:text-gray-50;
+    @apply mt-0 pt-0 rounded-t-none bg-gray-100 text-gray-900 dark:bg-gray-1000 dark:text-gray-50;
   }
 
   .prose li {
