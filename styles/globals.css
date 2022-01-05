@@ -13,10 +13,10 @@
     background-size: 40px 40px;
     background-image: linear-gradient(
         to right,
-        theme("colors.gray.200") 1px,
+        theme("colors.gray-150") 1px,
         transparent 1px
       ),
-      linear-gradient(to bottom, theme("colors.gray.200") 1px, transparent 1px);
+      linear-gradient(to bottom, theme("colors.gray-150") 1px, transparent 1px);
     background-position: calc(100% + 20px) calc(100% + 20px);
   }
 
