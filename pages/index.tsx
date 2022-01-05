@@ -4,6 +4,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { FrontMatter } from "@types";
 import { getPostBySlug } from "@lib/mdx";
 import Meta from "@components/Meta";
+import DemoBox from "@components/DemoBox";
 
 type TProps = {
   mdxSource: MDXRemoteSerializeResult;
@@ -15,6 +16,9 @@ const Home: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
     <React.Fragment>
       <Meta title="Marius Florescu" description={frontMatter.description} />
       <h1>{frontMatter.title}</h1>
+      <DemoBox>
+        <div className="w-32 h-32 bg-sky-400"></div>
+      </DemoBox>
       <MDXRemote {...mdxSource} />
     </React.Fragment>
   );
