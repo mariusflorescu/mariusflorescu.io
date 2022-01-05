@@ -14,7 +14,7 @@ const Window: React.FC<TProps> = ({ children, title }) => {
 
         <span className="text-sm font-light">{title}</span>
       </div>
-      <div className="flex justify-center items-center py-8 px-4 bg-white dark:bg-black border-t-2 border-neutral-100 dark:border-neutral-900 rounded-b-lg">
+      <div className="flex justify-center items-center py-8 px-4 bg-white dark:bg-black border-t-2 border-gray-100 dark:border-gray-900 rounded-b-lg">
         {children}
       </div>
     </div>

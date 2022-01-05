@@ -16,8 +16,8 @@ const Nav = () => {
   return (
     <nav className="p-6 sticky top-0 w-full backdrop-blur-lg backdrop-saturate-200">
       <Container className="flex justify-between items-center">
-        <span className="opacity-0 md:opacity-100 prose prose-neutral dark:prose-invert">
-          <em className="text-neutral-600 dark:text-neutral-400 text-sm">
+        <span className="opacity-0 md:opacity-100 prose prose-gray dark:prose-invert">
+          <em className="text-gray-600 dark:text-gray-400 text-sm">
             {title === "" ? "home" : title}
           </em>
         </span>
