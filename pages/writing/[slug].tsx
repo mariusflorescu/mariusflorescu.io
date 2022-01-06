@@ -1,6 +1,7 @@
 import React from "react";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { NextPageWithLayout, FrontMatter } from "@types";
+import useOgImage from "@lib/useOgImage";
 import { getPosts, getPostBySlug } from "@lib/mdx";
 import Layout from "@layout/Main";
 import { withProviders } from "@components/Providers/withProviders";
@@ -22,9 +23,15 @@ const WritingPost: NextPageWithLayout<TProps> = ({
   mdxSource,
   frontMatter,
 }) => {
+  const { imageURL } = useOgImage();
+
   return (
     <React.Fragment>
-      <Meta title={frontMatter.title} description={frontMatter.description} />
+      <Meta
+        title={frontMatter.title}
+        description={frontMatter.description}
+        imageURL={imageURL}
+      />
       <h1>{frontMatter.title}</h1>
       <PostDetails
         publishedAt={frontMatter.publishedAt}
