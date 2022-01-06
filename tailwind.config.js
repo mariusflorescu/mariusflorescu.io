@@ -15,6 +15,7 @@ module.exports = {
       fontFamily: {
         playfair: ["'Playfair Display'", "serif"],
         inter: ["'Inter'", "system-ui", "sans-serif"],
+        ibm: ["'IBM Plex Mono'", "monospace"],
       },
       colors: {
         gray: colors.neutral,

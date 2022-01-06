@@ -13,7 +13,7 @@ const OgImage: NextPage = () => {
         {title}
       </h1>
       <h4 className="text-2xl pb-4">{description}</h4>
-      <h6 className="text-xl font-mono text-gray-400">mariusflorescu.io</h6>
+      <h6 className="text-xl font-ibm text-gray-400">mariusflorescu.io</h6>
     </div>
   );
 };
