@@ -23,7 +23,7 @@ const WritingPost: NextPageWithLayout<TProps> = ({
   mdxSource,
   frontMatter,
 }) => {
-  const { imageURL } = useOgImage();
+  const { imageURL } = useOgImage(frontMatter.title, frontMatter.description);
 
   return (
     <React.Fragment>

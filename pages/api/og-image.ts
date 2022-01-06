@@ -17,16 +17,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   });
 
-  const relativeUrl = (req.query["path"] as string) || "";
+  const relativeUrl = `/og?title=${req.query["title"] || ""}&description=${req.query["description" || ""]}`
   const url = getAbsoluteURL(relativeUrl)
 
   await page.goto(url, {
     timeout: 15 * 1000,
     waitUntil: "networkidle"
   })
+
   const data = await page.screenshot({
     type: "png"
   })
+
   await browser.close()
 
   res.setHeader("Cache-Control", "s-maxage=31536000, stale-while-revalidate")

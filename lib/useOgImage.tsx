@@ -1,16 +1,12 @@
-import { useRouter } from "next/router";
 import { getAbsoluteURL } from "@lib/getAbsoluteURL";
 
-export default function useOpenGraphImage() {
-  const router = useRouter();
+export default function useOpenGraphImage(title: string, description: string) {
   const searchParams = new URLSearchParams();
 
-  searchParams.set(
-    "path",
-    router.asPath.replace("/writing/", "/writing/og/")
-  );
+  searchParams.set("title", title);
+  searchParams.set("description", description);
 
   const fullImageURL = getAbsoluteURL(`/api/og-image?${searchParams}`);
-  
+
   return { imageURL: fullImageURL };
 }

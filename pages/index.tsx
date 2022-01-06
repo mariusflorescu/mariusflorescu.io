@@ -2,6 +2,7 @@ import React from "react";
 import type { NextPageWithLayout } from "@types";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { FrontMatter } from "@types";
+import useOpenGraphImage from "@lib/useOgImage";
 import { getPostBySlug } from "@lib/mdx";
 import Layout from "@layout/Main";
 import { withProviders } from "@components/Providers/withProviders";
@@ -13,9 +14,14 @@ type TProps = {
 };
 
 const Home: NextPageWithLayout<TProps> = ({ mdxSource, frontMatter }) => {
+  const { imageURL } = useOpenGraphImage(
+    "Marius Florescu",
+    "versatile fullstack developer, building performant web applications..."
+  );
+
   return (
     <React.Fragment>
-      <Meta/>
+      <Meta imageURL={imageURL} />
       <h1>{frontMatter.title}</h1>
       <MDXRemote {...mdxSource} />
     </React.Fragment>
