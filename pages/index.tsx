@@ -14,7 +14,9 @@ const Home: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
   return (
     <React.Fragment>
       <Meta title="Marius Florescu" description={frontMatter.description} />
-      <h1>{frontMatter.title}</h1>
+      <h1>
+        versatile fullstack developer, building performant web applications...
+      </h1>
       <MDXRemote {...mdxSource} />
     </React.Fragment>
   );
