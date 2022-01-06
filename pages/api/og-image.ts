@@ -20,6 +20,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const relativeUrl = `/og?title=${req.query["title"] || ""}&description=${req.query["description" || ""]}`
   const url = getAbsoluteURL(relativeUrl)
 
+  console.log(url);
+
+
   await page.goto(url, {
     timeout: 15 * 1000,
     waitUntil: "networkidle"

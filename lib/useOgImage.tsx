@@ -8,5 +8,8 @@ export default function useOpenGraphImage(title: string, description: string) {
 
   const fullImageURL = getAbsoluteURL(`/api/og-image?${searchParams}`);
 
+  console.log(fullImageURL);
+  
+
   return { imageURL: fullImageURL };
 }
