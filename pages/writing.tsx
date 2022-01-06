@@ -1,6 +1,5 @@
 import React from "react";
 import type { NextPageWithLayout, PostMatter } from "@types";
-import useOpenGraphImage from "@lib/useOgImage";
 import { getListOfFilesFrontMatter } from "@lib/mdx";
 import Layout from "@layout/Main";
 import { withProviders } from "@components/Providers/withProviders";
@@ -12,17 +11,11 @@ type TProps = {
 };
 
 const Writings: NextPageWithLayout<TProps> = ({ writings }) => {
-  const { imageURL } = useOpenGraphImage(
-    "Writing",
-    "writing, a collection of thoughts and ideas, elaborated in a clumsy way..."
-  );
-
   return (
     <React.Fragment>
       <Meta
         title="Writing"
         description="writing, a collection of thoughts and ideas, elaborated in a clumsy way..."
-        imageURL={imageURL}
       />
       <h1>
         writing, a collection of thoughts and ideas, elaborated in a clumsy

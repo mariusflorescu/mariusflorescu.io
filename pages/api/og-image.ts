@@ -4,6 +4,7 @@ import { chromium as playwrightChromium } from 'playwright-core';
 import { getAbsoluteURL } from '@lib/getAbsoluteURL';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  return;
   const browser = await playwrightChromium.launch({
     args: chromium.args,
     executablePath: await chromium.executablePath,
