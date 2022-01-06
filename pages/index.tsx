@@ -1,8 +1,11 @@
 import React from "react";
-import type { NextPage } from "next";
+import type { NextPageWithLayout } from "@types";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { FrontMatter } from "@types";
+import useOpenGraphImage from "@lib/useOgImage";
 import { getPostBySlug } from "@lib/mdx";
+import Layout from "@layout/Main";
+import { withProviders } from "@components/Providers/withProviders";
 import Meta from "@components/Meta";
 
 type TProps = {
@@ -10,10 +13,19 @@ type TProps = {
   frontMatter: FrontMatter;
 };
 
-const Home: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
+const Home: NextPageWithLayout<TProps> = ({ mdxSource, frontMatter }) => {
+  const { imageURL } = useOpenGraphImage(
+    "Marius Florescu",
+    "versatile fullstack developer, building performant web applications..."
+  );
+
   return (
     <React.Fragment>
-      <Meta title="Marius Florescu" description={frontMatter.description} />
+      <Meta
+        title="Marius Florescu"
+        description={frontMatter.description}
+        imageURL={imageURL}
+      />
       <h1>
         versatile fullstack developer, building performant web applications...
       </h1>
@@ -21,6 +33,10 @@ const Home: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
     </React.Fragment>
   );
 };
+
+Home.getLayout = withProviders((page: React.ReactElement) => {
+  return <Layout>{page}</Layout>;
+});
 
 export async function getStaticProps() {
   const post = await getPostBySlug("index");

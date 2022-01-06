@@ -8,6 +8,41 @@
   }
 }
 
+@layer components {
+  .bg-grid-light {
+    background-size: 40px 40px;
+    background-image: linear-gradient(
+        to right,
+        theme("colors.gray-150") 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, theme("colors.gray-150") 1px, transparent 1px);
+    background-position: calc(100% + 20px) calc(100% + 20px);
+  }
+
+  .bg-grid-dark {
+    background-size: 40px 40px;
+    background-image: linear-gradient(
+        to right,
+        theme("colors.gray.900") 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, theme("colors.gray.900") 1px, transparent 1px);
+    background-position: calc(100% + 20px) calc(100% + 20px);
+  }
+
+  .bg-grid-meta {
+    background-size: 40px 40px;
+    background-image: linear-gradient(
+        to right,
+        theme("colors.gray.800") 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, theme("colors.gray.800") 1px, transparent 1px);
+    background-position: calc(100% + 20px) calc(100% + 20px);
+  }
+}
+
 @layer utilities {
   .prose {
     @apply max-w-full;
@@ -30,15 +65,15 @@
   }
 
   .prose p {
-    @apply text-neutral-600 dark:text-neutral-300;
+    @apply text-gray-600 dark:text-gray-300;
   }
 
   .prose blockquote > p {
     @apply before:content-[''] after:content-[''] font-playfair italic font-normal;
   }
 
-  .prose pre {
-    @apply bg-black text-neutral-100;
+  .prose pre[class*="language-"] {
+    @apply mt-0 pt-0 rounded-t-none bg-gray-100 text-gray-900 dark:bg-gray-1000 dark:text-gray-50;
   }
 
   .prose li {
@@ -46,7 +81,7 @@
   }
 
   .prose hr {
-    @apply border-t border-neutral-200 dark:border-neutral-700 my-6;
+    @apply border-t border-gray-200 dark:border-gray-700 my-6;
   }
 
   .prose em {
@@ -54,6 +89,6 @@
   }
 
   .prose a {
-    @apply after:content-['↗'] after:ml-0.5 decoration-2 decoration-transparent transition-all duration-200 text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 hover:dark:text-neutral-50 hover:decoration-neutral-800 hover:dark:decoration-neutral-50;
+    @apply after:content-['↗'] after:ml-0.5 decoration-2 decoration-transparent transition-all duration-200 text-gray-500 dark:text-gray-400 hover:text-gray-800 hover:dark:text-gray-50 hover:decoration-gray-800 hover:dark:decoration-gray-50;
   }
 }

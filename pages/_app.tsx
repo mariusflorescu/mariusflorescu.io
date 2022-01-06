@@ -1,19 +1,21 @@
+import React from "react";
 import type { AppProps } from "next/app";
-import { ThemeProvider } from "next-themes";
-import { MDXProvider } from "@mdx-js/react";
-import MDXComponents from "@components/MDXComponents";
+import type { NextPageWithLayout } from "@types";
+import Providers from "@components/Providers";
 import "@styles/globals.css";
-import Layout from "@layout/Main";
+import "@styles/prism.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <ThemeProvider attribute="class">
-      <MDXProvider components={MDXComponents}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </MDXProvider>
-    </ThemeProvider>
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
+  return getLayout(
+    <Providers>
+      <Component {...pageProps} />
+    </Providers>
   );
 }
 

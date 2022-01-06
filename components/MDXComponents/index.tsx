@@ -1,5 +1,5 @@
 import React from "react";
-import ContextMenu from "@components/ContextMenu";
+import { CopyIcon, CheckIcon } from "@icons";
 
 const CodeBlock = (
   props: React.DetailedHTMLProps<
@@ -8,7 +8,19 @@ const CodeBlock = (
   >
 ) => {
   const ref = React.useRef<HTMLPreElement>(null);
+
+  const [isCopied, setIsCopied] = React.useState(false);
   const [text, setText] = React.useState("");
+
+  const handleCopyToClipboard = () => {
+    navigator.clipboard.writeText(text);
+
+    setIsCopied(() => true);
+
+    setTimeout(() => {
+      setIsCopied(() => false);
+    }, 3000);
+  };
 
   React.useEffect(() => {
     if (ref && ref.current) {
@@ -17,9 +29,24 @@ const CodeBlock = (
   }, []);
 
   return (
-    <ContextMenu textToCopy={text}>
+    <div>
+      <div className="rounded-t-md flex justify-end px-2 pt-2 bg-gray-100 dark:bg-gray-1000">
+        <button
+          onClick={() => handleCopyToClipboard()}
+          className="group cursor-pointer flex gap-1 items-center py-1 px-2 rounded-md transition-colors duration-200 hover:bg-gray-200 hover:dark:bg-gray-800"
+        >
+          {isCopied ? (
+            <CheckIcon className="w-3 h-3 text-gray-500 dark:text-gray-400 transition-colors duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-200" />
+          ) : (
+            <CopyIcon className="w-3 h-3 text-gray-500 dark:text-gray-400 transition-colors duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-200" />
+          )}
+          <span className="text-xs text-gray-500 dark:text-gray-400 transition-colors duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-200">
+            {isCopied ? "Copied" : "Copy"} source
+          </span>
+        </button>
+      </div>
       <pre ref={ref} {...props} />
-    </ContextMenu>
+    </div>
   );
 };
 
@@ -27,7 +54,7 @@ const inlineCode = (
   props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
 ) => (
   <code
-    className="before:content-[''] after:content-[''] px-1 bg-neutral-200 dark:bg-neutral-800 rounded select-all"
+    className="before:content-[''] after:content-[''] px-1 bg-gray-200 dark:bg-gray-800 rounded select-all"
     {...props}
   ></code>
 );
