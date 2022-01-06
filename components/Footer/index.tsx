@@ -1,15 +1,13 @@
 import { GithubIcon, TwitterIcon, LinkedinIcon } from "@icons";
-
+import Container from "@components/Container";
 const Footer = () => {
   return (
-    <div className="py-6">
+    <Container className="p-6">
       <hr className="border-t border-gray-200 dark:border-gray-700 my-4" />
       <div className="w-full flex justify-between items-center">
-        <div className="prose prose-gray dark:prose-invert">
-          <em className="text-gray-500 dark:text-gray-400 text-sm">
-            find your inner peace.
-          </em>
-        </div>
+        <em className="font-playfair text-gray-500 dark:text-gray-400 text-sm">
+          find your inner peace.
+        </em>
         <div className="flex space-x-4">
           <a
             href="https://github.com/mariusflorescu"
@@ -37,7 +35,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
