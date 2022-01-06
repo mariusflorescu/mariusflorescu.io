@@ -5,11 +5,13 @@ import { NextSeo } from "next-seo";
 type TProps = {
   title?: string;
   description?: string;
+  imageURL?: string;
 };
 
 const Meta: React.FC<TProps> = ({
   title = "home",
   description = "hi there, I'm Marius Florescu",
+  imageURL,
 }) => {
   return (
     <>
@@ -25,6 +27,7 @@ const Meta: React.FC<TProps> = ({
         <meta name="description" content={description} />
         <meta name="og:description" content={description} />
         <meta name="og:url" content="https://mariusflorescu.io" />
+        {imageURL && <meta property="og:image" content={imageURL} />}
         <meta httpEquiv="Content-Language" content="en" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@_mariusflorescu" />
