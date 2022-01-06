@@ -1,16 +1,17 @@
 import React from "react";
-import type { NextPage } from "next";
+import type { NextPageWithLayout } from "@types";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { FrontMatter } from "@types";
 import { getPostBySlug } from "@lib/mdx";
 import Meta from "@components/Meta";
+import Layout from "@layout/Main";
 
 type TProps = {
   mdxSource: MDXRemoteSerializeResult;
   frontMatter: FrontMatter;
 };
 
-const Home: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
+const Home: NextPageWithLayout<TProps> = ({ mdxSource, frontMatter }) => {
   return (
     <React.Fragment>
       <Meta title="Marius Florescu" description={frontMatter.description} />
@@ -18,6 +19,10 @@ const Home: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
       <MDXRemote {...mdxSource} />
     </React.Fragment>
   );
+};
+
+Home.getLayout = (page: React.ReactElement) => {
+  return <Layout>{page}</Layout>;
 };
 
 export async function getStaticProps() {

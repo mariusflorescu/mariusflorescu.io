@@ -1,6 +1,6 @@
 import React from "react";
-import type { NextPage } from "next";
-import type { PostMatter } from "@types";
+import type { NextPageWithLayout, PostMatter } from "@types";
+import Layout from "@layout/Main";
 import { getListOfFilesFrontMatter } from "@lib/mdx";
 import Meta from "@components/Meta";
 import PostCard from "@components/PostCard";
@@ -9,7 +9,7 @@ type TProps = {
   writings: PostMatter[];
 };
 
-const Writings: NextPage<TProps> = ({ writings }) => {
+const Writings: NextPageWithLayout<TProps> = ({ writings }) => {
   return (
     <React.Fragment>
       <Meta
@@ -27,6 +27,10 @@ const Writings: NextPage<TProps> = ({ writings }) => {
       </div>
     </React.Fragment>
   );
+};
+
+Writings.getLayout = (page: React.ReactElement) => {
+  return <Layout>{page}</Layout>;
 };
 
 export async function getStaticProps() {

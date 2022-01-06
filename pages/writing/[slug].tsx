@@ -1,7 +1,7 @@
 import React from "react";
-import type { NextPage } from "next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import type { FrontMatter } from "@types";
+import type { NextPageWithLayout, FrontMatter } from "@types";
+import Layout from "@layout/Main";
 import { getPosts, getPostBySlug } from "@lib/mdx";
 import Meta from "@components/Meta";
 import PostDetails from "@components/PostDetails";
@@ -17,7 +17,10 @@ type TParams = {
   };
 };
 
-const WritingPost: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
+const WritingPost: NextPageWithLayout<TProps> = ({
+  mdxSource,
+  frontMatter,
+}) => {
   return (
     <React.Fragment>
       <Meta title={frontMatter.title} description={frontMatter.description} />
@@ -29,6 +32,10 @@ const WritingPost: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
       <MDXRemote {...mdxSource} />
     </React.Fragment>
   );
+};
+
+WritingPost.getLayout = (page: React.ReactElement) => {
+  return <Layout>{page}</Layout>;
 };
 
 export async function getStaticPaths() {
