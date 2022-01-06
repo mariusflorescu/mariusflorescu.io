@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   darkMode: "class",
   content: [
@@ -13,6 +15,12 @@ module.exports = {
       fontFamily: {
         playfair: ["'Playfair Display'", "serif"],
         inter: ["'Inter'", "system-ui", "sans-serif"],
+        ibm: ["'IBM Plex Mono'", "monospace"],
+      },
+      colors: {
+        gray: colors.neutral,
+        "gray-150": "#efefef",
+        "gray-1000": "#121212",
       },
     },
   },

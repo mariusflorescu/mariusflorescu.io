@@ -15,7 +15,7 @@ const Tooltip: React.FC<TProps> = ({ children, text }) => {
         <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
         <TooltipPrimitive.Content
           sideOffset={5}
-          className="px-3 py-2 bg-white dark:bg-black text-neutral-900 dark:text-neutral-50 shadow-lg rounded text-sm"
+          className="px-3 py-2 bg-white dark:bg-black text-gray-900 dark:text-gray-50 shadow-lg rounded text-sm"
         >
           <TooltipPrimitive.TooltipArrow
             fill={theme === "light" ? "#fff" : "#000"}
