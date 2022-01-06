@@ -1,7 +1,8 @@
 import React from "react";
 import type { NextPageWithLayout, PostMatter } from "@types";
-import Layout from "@layout/Main";
 import { getListOfFilesFrontMatter } from "@lib/mdx";
+import Layout from "@layout/Main";
+import { withProviders } from "@components/Providers/withProviders";
 import Meta from "@components/Meta";
 import PostCard from "@components/PostCard";
 
@@ -29,9 +30,9 @@ const Writings: NextPageWithLayout<TProps> = ({ writings }) => {
   );
 };
 
-Writings.getLayout = (page: React.ReactElement) => {
+Writings.getLayout = withProviders((page: React.ReactElement) => {
   return <Layout>{page}</Layout>;
-};
+});
 
 export async function getStaticProps() {
   const writings = getListOfFilesFrontMatter("writing");

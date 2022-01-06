@@ -1,8 +1,9 @@
 import React from "react";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { NextPageWithLayout, FrontMatter } from "@types";
-import Layout from "@layout/Main";
 import { getPosts, getPostBySlug } from "@lib/mdx";
+import Layout from "@layout/Main";
+import { withProviders } from "@components/Providers/withProviders";
 import Meta from "@components/Meta";
 import PostDetails from "@components/PostDetails";
 
@@ -34,9 +35,9 @@ const WritingPost: NextPageWithLayout<TProps> = ({
   );
 };
 
-WritingPost.getLayout = (page: React.ReactElement) => {
+WritingPost.getLayout = withProviders((page: React.ReactElement) => {
   return <Layout>{page}</Layout>;
-};
+});
 
 export async function getStaticPaths() {
   const posts = getPosts("writing");

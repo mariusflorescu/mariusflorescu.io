@@ -1,10 +1,8 @@
 import React from "react";
 import type { NextPage } from "next";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { FrontMatter } from "@types";
 import { getPosts, getPostBySlug } from "@lib/mdx";
-import Meta from "@components/Meta";
-import PostDetails from "@components/PostDetails";
 
 type TProps = {
   mdxSource: MDXRemoteSerializeResult;
