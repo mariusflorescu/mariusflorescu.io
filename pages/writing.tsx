@@ -1,7 +1,9 @@
 import React from "react";
-import type { NextPage } from "next";
-import type { PostMatter } from "@types";
+import type { NextPageWithLayout, PostMatter } from "@types";
+import useOpenGraphImage from "@lib/useOgImage";
 import { getListOfFilesFrontMatter } from "@lib/mdx";
+import Layout from "@layout/Main";
+import { withProviders } from "@components/Providers/withProviders";
 import Meta from "@components/Meta";
 import PostCard from "@components/PostCard";
 
@@ -9,12 +11,18 @@ type TProps = {
   writings: PostMatter[];
 };
 
-const Writings: NextPage<TProps> = ({ writings }) => {
+const Writings: NextPageWithLayout<TProps> = ({ writings }) => {
+  const { imageURL } = useOpenGraphImage(
+    "Writing",
+    "writing, a collection of thoughts and ideas, elaborated in a clumsy way..."
+  );
+
   return (
     <React.Fragment>
       <Meta
         title="Writing"
         description="writing, a collection of thoughts and ideas, elaborated in a clumsy way..."
+        imageURL={imageURL}
       />
       <h1>
         writing, a collection of thoughts and ideas, elaborated in a clumsy
@@ -28,6 +36,10 @@ const Writings: NextPage<TProps> = ({ writings }) => {
     </React.Fragment>
   );
 };
+
+Writings.getLayout = withProviders((page: React.ReactElement) => {
+  return <Layout>{page}</Layout>;
+});
 
 export async function getStaticProps() {
   const writings = getListOfFilesFrontMatter("writing");

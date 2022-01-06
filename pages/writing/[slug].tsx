@@ -1,8 +1,10 @@
 import React from "react";
-import type { NextPage } from "next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import type { FrontMatter } from "@types";
+import type { NextPageWithLayout, FrontMatter } from "@types";
+import useOgImage from "@lib/useOgImage";
 import { getPosts, getPostBySlug } from "@lib/mdx";
+import Layout from "@layout/Main";
+import { withProviders } from "@components/Providers/withProviders";
 import Meta from "@components/Meta";
 import PostDetails from "@components/PostDetails";
 
@@ -17,10 +19,19 @@ type TParams = {
   };
 };
 
-const WritingPost: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
+const WritingPost: NextPageWithLayout<TProps> = ({
+  mdxSource,
+  frontMatter,
+}) => {
+  const { imageURL } = useOgImage(frontMatter.title, frontMatter.description);
+
   return (
     <React.Fragment>
-      <Meta title={frontMatter.title} description={frontMatter.description} />
+      <Meta
+        title={frontMatter.title}
+        description={frontMatter.description}
+        imageURL={imageURL}
+      />
       <h1>{frontMatter.title}</h1>
       <PostDetails
         publishedAt={frontMatter.publishedAt}
@@ -30,6 +41,10 @@ const WritingPost: NextPage<TProps> = ({ mdxSource, frontMatter }) => {
     </React.Fragment>
   );
 };
+
+WritingPost.getLayout = withProviders((page: React.ReactElement) => {
+  return <Layout>{page}</Layout>;
+});
 
 export async function getStaticPaths() {
   const posts = getPosts("writing");
