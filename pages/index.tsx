@@ -15,10 +15,7 @@ type TProps = {
 const Home: NextPageWithLayout<TProps> = ({ mdxSource, frontMatter }) => {
   return (
     <React.Fragment>
-      <Meta
-        title="Marius Florescu"
-        description={frontMatter.description}
-      />
+      <Meta title="Marius Florescu" description={frontMatter.description} />
       <h1>
         versatile fullstack developer, building performant web applications...
       </h1>

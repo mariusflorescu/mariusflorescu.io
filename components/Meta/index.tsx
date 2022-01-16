@@ -11,7 +11,7 @@ type TProps = {
 const Meta: React.FC<TProps> = ({
   title = "Marius Florescu",
   description = "A blog fullfilled with curiosities and good vibes.",
-  imageURL,
+  imageURL = "https://mariusflorescu.io/ogimg.png",
 }) => {
   return (
     <>
@@ -28,7 +28,7 @@ const Meta: React.FC<TProps> = ({
         <meta name="description" content={description} />
         <meta name="og:description" content={description} />
         <meta name="og:url" content="https://mariusflorescu.io" />
-        {imageURL && <meta property="og:image" content={imageURL} />}
+        <meta property="og:image" content={imageURL} />
         <meta httpEquiv="Content-Language" content="en" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
