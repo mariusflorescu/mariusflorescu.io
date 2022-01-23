@@ -21,7 +21,7 @@ const LinkPreview = () => {
         <HoverCard.Content
           side="top"
           sideOffset={6}
-          className="bg-gray-100 dark:bg-gray-1000 p-2 rounded-md origin-bottom radix-state-open:animate-slide-up radix-state-closed:animate-reverse-slide"
+          className="bg-gray-100 dark:bg-gray-1000 shadow-lg p-2 rounded-md origin-bottom radix-state-open:animate-slide-up radix-state-closed:animate-reverse-slide"
         >
           <img
             src="/link-previews/light.webp"
