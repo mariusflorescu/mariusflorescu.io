@@ -9,7 +9,8 @@
       "@layout/*": ["./layout/*"],
       "@posts/*": ["./posts/*"],
       "@icons": ["./icons/index.tsx"],
-      "@types": ["./types/index.ts"]
+      "@types": ["./types/index.ts"],
+      "@demo/*": ["./demo/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
