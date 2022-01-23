@@ -149,7 +149,7 @@ Looking at the previous options strengths, we can see that the first one had ima
 
 What if we could find a work-around and combine those to obtain a Link Preview component that is using images from the File Static Server, but those are being updated at an interval of time ?
 
-Checkout this [live example](https://github-actions-images.vercel.app/) and also feel free to look at the [source code](https://github.com/mariusflorescu/github-actions-images)
+Checkout this [live example](https://github-actions-images.vercel.app/) and also feel free to look at the [source code](https://github.com/mariusflorescu/github-actions-images).
 
 ### The idea behind
 
@@ -203,10 +203,14 @@ I'm using `browserless` in this example just because it _tricks_ many websites d
 
 ![Twitter Browser no longer supported](/link-previews/twitter.png)
 
-The reason why I'm not using the `Image` component from Next.js is because until it won't be visible the optimizing won't be done, so for the first user that comes and tries the link preview it will _flicker_ the image in order to cache it.
+The reason why I'm not using the `Image` component from Next.js is because until the image is not visible the optimizing won't be done, so for the first user that comes in and tries the link preview will see the hover card blank until the optimization and caching is done.
 
 This is how the live example looks like:
 
 ![Live example](/link-previews/example.gif)
 
 **Be aware** that this is just an example which will work for the _perfect_ scenario, but what if an image _fails_ to be screenshotted ? In this example, the entire script would just fail and no screenshots would be updated, but we could find ways of _keeping_ the old images and updating as many as we can.
+
+## Another methods
+
+There are many other ways of creating this component, such as creating an api route that takes the screenshot and caches the response (will run in the same issue as using the Microlink API), or even using a storage solution where the screenshots would be updated periodically.
