@@ -1,5 +1,6 @@
 import React from "react";
 import { CopyIcon, CheckIcon } from "@icons";
+import DemoLinkPreview from "@demo/LinkPreview";
 
 const CodeBlock = (
   props: React.DetailedHTMLProps<
@@ -62,6 +63,7 @@ const inlineCode = (
 const MDXComponents = {
   pre: CodeBlock,
   inlineCode,
+  DemoLinkPreview,
 };
 
 export default MDXComponents;
