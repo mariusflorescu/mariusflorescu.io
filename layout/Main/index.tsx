@@ -7,7 +7,7 @@ const Layout: React.FC = ({ children }) => (
   <div className="w-full h-full flex flex-col">
     <Nav />
     <Container className="p-6 flex-1">
-      <article className="w-full py-3 prose prose-gray dark:prose-invert">
+      <article className="w-full py-16 prose prose-gray dark:prose-invert">
         {children}
       </article>
     </Container>

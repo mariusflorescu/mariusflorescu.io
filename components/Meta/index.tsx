@@ -11,7 +11,7 @@ type TProps = {
 const Meta: React.FC<TProps> = ({
   title = "Marius Florescu",
   description = "A blog fullfilled with curiosities and good vibes.",
-  imageURL,
+  imageURL = "https://www.mariusflorescu.io/ogimg.png",
 }) => {
   return (
     <>
@@ -23,12 +23,11 @@ const Meta: React.FC<TProps> = ({
           content="width=device-width,initial-scale=1"
           key="viewport"
         />
-        <meta name="robots" content="follow, index" />
         <meta name="og:title" content={title} />
         <meta name="description" content={description} />
         <meta name="og:description" content={description} />
-        <meta name="og:url" content="https://mariusflorescu.io" />
-        {imageURL && <meta property="og:image" content={imageURL} />}
+        <meta name="og:url" content="https://www.mariusflorescu.io" />
+        <meta property="og:image" content={imageURL} />
         <meta httpEquiv="Content-Language" content="en" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
@@ -42,10 +41,22 @@ const Meta: React.FC<TProps> = ({
         title={title}
         description={description}
         openGraph={{
-          url: "https//mariusflorescu.io",
+          url: "https//www.mariusflorescu.io",
           title,
           description,
           site_name: "MariusFlorescu",
+          images: [
+            {
+              url: "https://www.mariusflorescu.io/ogimg.png",
+              alt: "Open Graph Image",
+              type: "image/png",
+            },
+          ],
+        }}
+        twitter={{
+          handle: "@_mariusflorescu",
+          site: "@site",
+          cardType: "summary_large_image",
         }}
       />
     </>
