@@ -1,8 +1,21 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 const ProgressBar = () => {
-  let maxScrollHeight = 0;
+  const router = useRouter();
   const progressRef = React.useRef<HTMLDivElement>(null);
+  let maxScrollHeight = 0;
+
+  const checkInvalidRoute = () => {
+    if (!progressRef || !progressRef.current) return;
+
+    if (router.pathname !== "/writing/[slug]") {
+      progressRef.current.style.width = "0px";
+      return true;
+    }
+
+    return false;
+  };
 
   const computeWidth = () => {
     if (!progressRef || !progressRef.current) return;
@@ -18,12 +31,12 @@ const ProgressBar = () => {
     computeWidth();
   };
 
-  React.useLayoutEffect(() => {
-    if (typeof window === undefined || typeof document === undefined) return;
-    maxScrollHeight = document.body.scrollHeight;
-  }, []);
-
   React.useEffect(() => {
+    if (checkInvalidRoute()) return;
+    if (typeof window === undefined || typeof document === undefined) return;
+
+    computeWidthAndHeight();
+
     window.addEventListener("scroll", computeWidth);
     window.addEventListener("resize", computeWidthAndHeight);
 
@@ -31,7 +44,7 @@ const ProgressBar = () => {
       window.removeEventListener("scroll", computeWidth);
       window.removeEventListener("resize", computeWidthAndHeight);
     };
-  }, []);
+  }, [router.asPath]);
 
   return (
     <div
