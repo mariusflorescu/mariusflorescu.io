@@ -2,7 +2,7 @@
 title: "Dissecting link previews..."
 publishedAt: "Jan 23"
 description: "Link previews grew a lot in popularity lately, but let's see some options of creating one."
-status: "private"
+status: "public"
 ---
 
 import DemoLinkPreview from "../../demo/LinkPreview";
@@ -11,7 +11,7 @@ import DemoLinkPreview from "../../demo/LinkPreview";
 
 Lately, link previews grew in popularity and I'm seeing them more often, especially on tech related websites. I feel like having a small box with an image of the destination that is visible whenever you hover the external link is an _amazing idea_ and I would _love_ to see it more often since it is definitely a nice _subtle_ touch.
 
-There are many methods of creating a link preview component, let's go through some of them and see what are the pros and cons of each one.
+There are many methods of creating a link preview component, let's go through some of them and see what are strenghts and weaknesses they have.
 
 ## Using Microlink's screenshot API
 
@@ -21,9 +21,9 @@ The images received from [Microlink](https://microlink.io/) are being automatica
 
 ### But... who ?
 
-Since I've said that it's easy to use, you just need to have an image tag, where you fill the source attribute with `api.microlink.io` and add some query parameters.
+Microlink's API will handle all the logic of taking the screenshot, so what is left for us is to create the UI part and also to adjust the URL with some query parameters.
 
-Let's see how the code for and `LinkPreview` component would look like in Next.js. I'm using the Image component from Next.js, the Hover Card component from [Radix-UI](https://www.radix-ui.com/docs/primitives/components/hover-card) and the `encode` from qss package in this example (query parameters encoding), but feel free to play with it.
+Below is an implementation of the `LinkPreview` component in Next.js. Additionally, I am using the `Image` component from Next.js, the `HoverCard` primitive from [Radix-UI](https://www.radix-ui.com/docs/primitives/components/hover-card) and the `encode` from qss package in this example (query parameters encoding), but feel free to play with it.
 
 ```typescript
 import React from "react";
@@ -72,10 +72,11 @@ const LinkPreview: React.FC<IProps> = ({ url, children }) => {
 export default LinkPreview;
 ```
 
-Where:
+#### Notes
 
-- `url` represents the link that you want to screenshot.
 - `colorScheme` can be either `light` or `dark`. This parameter is optional, having the default value to `light`.
+
+There are many other parameters that can be applied in order to achieve the desired result which can be found [here](https://github.com/microlinkhq/browserless).
 
 Also, don't forget to add the Microlink API url in your `next.config.js`
 
@@ -89,25 +90,27 @@ module.exports = {
 };
 ```
 
-This option seems lovely since we've just created a component that would handle all the link previews, and all the images are dynamically generated and regularly updated.
+This option seems _lovely_ since we've just created a component, where our only concern was the UI, that would automatically generate screenshots which are going to be regularly updated (once the cache gets invalidated).
 
 ### Issues that I've faced
 
-It is _very slow_ due to the fact that it has the `waitUntil` flag set to `networkidle2`, which means that once the cache gets invalidated, it will crawl to the link that you want to screenshot and wait until there are no more that 2 requests in the last 500ms. That means that some of the users will wait some time until they are able to see the screenshot.
+It is _very slow_ due to the fact that it has the `waitUntil` flag set to `networkidle2`, which means that once the cache gets invalidated, it will crawl to the link that you want to screenshot and wait until there are no more that 2 requests in the last 500ms. That results in a bad performance and horrible UX since there would always be an user from time to time that would have to wait **a lot** of time until the image is processed.
 
-Let's say that we can get over this issue, but there is one more. I've experimented this method many times, and websites that have certain animations or certain loading states (eg: Twitter in general or if you screenshot your Github account and you have the stats in the Readme) that take some time would make the screenshot feel incomplete. From my experience, trying to capture your Twitter account will result in _almost blank_ images most of the time.
+Let's say that we can get over this issue, but there is one more. I've experimented this method many times and I can say that the results were _inconsistent_. Most of the web apps that I wanted to snapshot had certain loading states or animations, which ended in images that felt _imcomplete_.
+
+From my experience, trying to capture your Twitter account will result in _almost blank_ images most of the time.
 
 ![My Twitter screenshotted by Microlink](/link-previews/my-twitter.png)
 
 ## Static File Serving
 
-A good yet simple method in which you take screenshots from all websites that you want to preview and throw them into the `public/` folder of the app.
+A good yet _simple_ method in which you take screenshots from all websites that you want to preview and throw them into the `public/` folder of the app.
 
 ### Component implementation
 
-I'm going to use the same setup as the example from above.
+I'm going to use the same setup as for the example from above.
 
-The component is going to look almost the same, but with one additional prop, `imagePath` that will be the path to the image from the `public/` folder.
+The only difference is one additional prop, `imagePath` that will be the path to the image from the `public/` folder.
 
 ```typescript
 import React from "react";
@@ -149,15 +152,15 @@ However, I feel like this method is a pain to maintain, making new screenshots a
 
 ## Creating screenshots via Github Actions and adding them to the File Static Server
 
-Looking at the previous options strengths, we can see that the first one had images that were up to date and the second one was performing really well.
+Looking at the previous options strengths, we can see that the first one had images that were _up-to-date_ and the second one was _performing_ really well.
 
-What if we could find a work-around and combine those to obtain a Link Preview component that is using images from the File Static Server, but those are being updated at an interval of time ?
+What if we could find a work-around and combine those two to obtain a Link Preview component that is using images from the File Static Server, but those are being updated at an interval of time ?
 
 Checkout this [live example](https://github-actions-images.vercel.app/) and also feel free to look at the [source code](https://github.com/mariusflorescu/github-actions-images).
 
 ### The idea behind
 
-Well, the idea is to create a Github Action that will run at an interval of time (cronjob), like 12/24 hours, a script that creates screenshots, updates the `public/` folder and the pushes back the changes.
+Well, the idea is to create a _Github Action_ that will run at an interval of time a script that creates screenshots, updates the `public/` folder and the pushes back the changes to the repository.
 
 ### Cronjob
 
@@ -191,23 +194,23 @@ jobs:
           git push
 ```
 
-What happens is straight-forward, installing dependencies, runs the screenshots script and the pushes them back to the repository.
+What happens is _straight-forward_. It runs every 12 hours, installs dependencies, runs script that is generating the screenshots and then pushes them back to the repository.
 
 ### The script
 
-Basically, the example script that you can find inside of `.github/functions/generateScreenshots.js` firstly cleans the `public/` folder, receives a list of links that need to be visited and screenshotted and by using any Headless Browser it goes, waits for 5 seconds, takes the screenshots for both light and dark them and save them to the `public/` folder.
+The example script that you can find inside of `.github/functions/generateScreenshots.js` firstly cleans the `public/` folder, receives a list of links that need to be visited and screenshotted and by using any Headless Browser it goes, waits for some time (5 seconds in the example), takes the screenshots for both light and dark theme and saves them to the `public/` folder.
 
-As you can see, the images are being resized before saving, because a link preview would generally be rendered at small sizes (`200x128` in this example) and also saved with the `webp` extension.
+As you can see, the images are being resized before saving, because a link preview would generally be rendered at small sizes (`200x128` in this example).
 
-I've chosen the `webp` format due to the fact that the images are much smaller, which is an absolute advantage.
+In addition to that, the images are saved as `webp`, since they are _optimised for the web_, having small sizes, which is an absolute advantage.
 
 #### Notes
 
-I'm using `browserless` in this example just because it _tricks_ many websites due to its default configuration that we are not a bot. As an example, if you try to screenshot [Twitter](https://twitter.com) with Puppeteer or Playwright you would see that the screenshot would like this:
+I'm using `browserless` in this example because it has a strong out of the box configuration, that _tricks_ many web apps against their bot protection. As an example, if you try to screenshot **Twitter** with Puppeteer or Playwright, with no prior configuration, you would see that the screenshot would like this:
 
 ![Twitter Browser no longer supported](/link-previews/twitter.png)
 
-The reason why I'm not using the `Image` component from Next.js is because until the image is not visible the optimizing won't be done, so for the first user that comes in and tries the link preview will see the hover card blank until the optimization and caching is done.
+I've chosen going for an image _preload_ and a normal image tag in favor of the `Image` component because until the image isn't visible the optimizing won't be done, so for the first user that comes in and tries the link preview will see the hover card _blank_ until the optimization and caching is done. Even though the period where the card is blank is _very_ short, it's still annoying from an user perspective.
 
 This is how the live example looks like:
 
@@ -217,4 +220,18 @@ This is how the live example looks like:
 
 ## Another methods
 
-There are many other ways of creating this component, such as creating an api route that takes the screenshot and caches the response (will run in the same issue as using the Microlink API), or even using a storage solution where the screenshots would be updated periodically.
+There are many other ways of creating this component, such as creating an _api route_ that takes the screenshot and caches the response (will run in the same issue as using the Microlink API though) or even using a _storage solution_ where the screenshots would be updated periodically.
+
+## Conclusion
+
+**Which one is the best ?**
+
+My answer is _definetly_ it depends on the situation.
+
+If the website isn't updating often, I would choose creating the screenshots myself.
+
+If I wanted to keep them up-to-date, to be easy to implement and accept the trade-off until the response is cached, I would choose Microlink's API.
+
+And if I had the time to implement, constantly upgrade and maintain my own solution I would go for that.
+
+IMO, rarely you would see a solution that is _the best_ for each situation. In the end, that's the beauty of programming, having a number of possible use cases will result in almost the same number of solutions 🤪.
