@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Item from "./Item";
 import Container from "@components/Container";
 import ThemeChanger from "@components/ThemeChanger";
+import ProgressBar from "@components/ProgressBar";
 
 type TRoute = {
   name: string;
@@ -14,8 +15,9 @@ const Nav = () => {
   const title = router.pathname?.split("/")[1];
 
   return (
-    <nav className="p-6 fixed bg-gray-50/30 dark:bg-gray-900/30 top-0 w-full backdrop-blur-lg backdrop-saturate-200 z-50">
-      <Container className="flex justify-between items-center">
+    <nav className="fixed bg-gray-50/30 dark:bg-gray-900/30 top-0 w-full backdrop-blur-lg backdrop-saturate-200 z-50">
+      <ProgressBar />
+      <Container className="py-4 px-6 flex justify-between items-center">
         <span className="opacity-0 md:opacity-100 prose prose-gray dark:prose-invert">
           <em className="text-gray-600 dark:text-gray-400 text-sm">
             {title === "" ? "home" : title}
