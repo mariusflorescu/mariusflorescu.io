@@ -9,21 +9,21 @@ import DemoLinkPreview from "../../demo/LinkPreview";
 
 <DemoLinkPreview />
 
-Lately, link previews grew in popularity and I'm seeing them more often, especially on tech related websites. I feel like having a small box with an image of the destination that is visible whenever you hover the external link is an _amazing idea_ and I would _love_ to see it more often since it is definitely a nice _subtle_ touch.
+Recently, link previews have increased in popularity, and I'm seeing them more frequently, particularly on technology-related websites. I believe that having a small box with an image of the destination that pops out whenever you hover over the external link is an _excellent_ concept, and one that I would like to see more frequently, as it is a very subtle touch.
 
-There are many methods of creating a link preview component, let's go through some of them and see what are strenghts and weaknesses they have.
+There are a variety of approaches for generating a link preview component; let's have a look at a few of them and see what advantages and disadvantages they possess.
 
 ## Using Microlink's screenshot API
 
-This is definitely the most _popular_ option that I've seen so far, due to the fact that it's really easy to use and also the images get regularly updated.
-
-The images received from [Microlink](https://microlink.io/) are being automatically cached, so you don't need to worry about it.
+This is without a doubt the most _popular_ approach that I've come across so far, owing to the fact that it's quite simple to use and that the images are updated on a frequent basis.
 
 ### But... who ?
 
 Microlink's API will handle all the logic of taking the screenshot, so what is left for us is to create the UI part and also to adjust the URL with some query parameters.
 
-Below is an implementation of the `LinkPreview` component in Next.js. Additionally, I am using the `Image` component from Next.js, the `HoverCard` primitive from [Radix-UI](https://www.radix-ui.com/docs/primitives/components/hover-card) and the `encode` from qss package in this example (query parameters encoding), but feel free to play with it.
+The images received from [Microlink](https://microlink.io/) are being automatically cached, so you don't need to worry about it.
+
+Below is an implementation of the `LinkPreview` component in Next.js. Additionally, I am using the `Image` component from Next.js, the `HoverCard` primitive from [Radix-UI](https://www.radix-ui.com/docs/primitives/components/hover-card) and the `encode` from qss package, but feel free to play with it.
 
 ```typescript
 import React from "react";
@@ -75,10 +75,9 @@ export default LinkPreview;
 #### Notes
 
 - `colorScheme` can be either `light` or `dark`. This parameter is optional, having the default value to `light`.
+- there are many other parameters that can be applied in order to achieve the desired result which can be found [here](https://github.com/microlinkhq/browserless).
 
-There are many other parameters that can be applied in order to achieve the desired result which can be found [here](https://github.com/microlinkhq/browserless).
-
-Also, don't forget to add the Microlink API url in your `next.config.js`
+Don't forget to add the Microlink API in your domains array from the `next.config.js` !
 
 ```javascript
 /** @type {import('next').NextConfig} */
@@ -104,7 +103,7 @@ From my experience, trying to capture your Twitter account will result in _almos
 
 ## Static File Serving
 
-A good yet _simple_ method in which you take screenshots from all websites that you want to preview and throw them into the `public/` folder of the app.
+A good yet _simple_ method in which you take screenshots from all websites that you wish to preview and throw them into the `public/` folder of the app.
 
 ### Component implementation
 
