@@ -21,7 +21,7 @@ const ProgressBar = () => {
     if (!progressRef || !progressRef.current) return;
 
     const result =
-      (window.scrollY * 100) / (maxScrollHeight - window.innerHeight);
+      (window.scrollY * 100) / (maxScrollHeight - window.outerHeight);
 
     progressRef.current.style.width = `${result}%`;
   };

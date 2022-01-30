@@ -1,0 +1,88 @@
+---
+title: "Statically Generating Screenshots"
+publishedAt: "Jan 23"
+description: "To be replaced"
+status: "public"
+---
+
+Lately, I've been exploring ways of dynamically generating screenshots and found few interesting methods but they were lacking two important points from my perspective, _performance_ and _user experience_.
+
+## The goal
+
+To give you a little bit of context, what I wanted to achieve is a link preview component, and if you are not familiar with what or how a link preview should behave, you can check out [this article](https://uiw.tf/link-preview).
+
+Besides a _pleasing UI_, I wanted to have screenshots that were resized to according dimensions (not too large, since they are going to be shown as small images), saved as `webp` (also to keep them as tiny as possible) and also regularly updated.
+
+The need of keeping them updated was due to the fact that some pages from certain application may often change (such as a twitter profile) and I wanted the screenshots to be as close to present as possible.
+
+#### Note
+
+For those who are not familiar with that image format:
+
+> WebP is a modern image format that provides superior lossless and lossy compression for images on the web. Using WebP, webmasters and web developers can create smaller, richer images that make the web faster.
+
+## Generating screenshots with Github Actions
+
+The first thing that came to my mind while I was thinking about a mechanism that is going to automatically generate the screenshots was **Github Actions**.
+
+I've also prepared an example app, check out the [live example](https://github-actions-images.vercel.app/) and also the [source code](https://github.com/mariusflorescu/github-actions-images).
+
+### But... who?
+
+The idea is straight-forward. We will have an action that will be triggered at an interval of time, which is going to update our repository with new images.
+
+### Workflow
+
+The action can be found in `.github/workflows/screenshots.yaml` and it looks like this:
+
+```yaml
+name: Generate screenshots
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: DerYeger/yarn-setup-action@master
+        with:
+          node-version: 16
+      - name: yarn install
+        run: yarn
+      - name: make screenshots
+        run: yarn run screenshots
+      - name: push to repository
+        run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'username@users.noreply.github.com'
+          git pull origin main
+          git commit -am "Automated screenshots"
+          git push
+```
+
+This actions runs every 12 hours, installs the dependencies, runs the script that is creating the screenshots and then it pushes them back to the current repository.
+
+#### Note
+
+`DerYeger/yarn-setup-action@master` is used because **yarn** is my package manager of choice.
+
+### The script
+
+Firstly, the script runs a cleanup function which is going to remove the `public/` folder, creates an instance of a _Headless Browser_ then iterates through an array of objects (constants, which consist of name and url) and takes the screenshot for both _light_ and _dark_ color scheme.
+
+After the screenshots of both themes is done, we are going to resize the images and save them with the `webp` extension. To resize the images I'm using [sharp](https://www.npmjs.com/package/sharp), feel free to check it out.
+
+#### Note
+
+I'm using `browserless` due to its strong configuration out of the box, which is _tricks_ many applications against their bot protection. As an example, trying to screenshots your _Twitter_ account with either Puppeteer or Playwright with no prior configuration will result in screenshots that are going to look like this:
+
+INSERT IMG
+
+### Room for improvements
+
+This action seems to run perfectly, but we must ask ourselves what happens if the Headless Browser cannot connect to the website or something else goes wrong ?In the current state, the script would simply fail and not update the repository.
+
+A more _fail safe_ upgrade that would guarantee us that we generate as many new screenshots as we can and deliver them is to **not run** the cleanup function in the first place.
