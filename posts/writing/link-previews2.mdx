@@ -9,21 +9,21 @@ Lately, I've been exploring ways of dynamically generating screenshots and found
 
 ## The goal
 
-To give you a little bit of context, what I wanted to achieve is a link preview component, and if you are not familiar with what or how a link preview should behave, you can check out [this article](https://uiw.tf/link-preview).
+To give you a little bit of context, what I wanted to achieve is a link preview component. If you are not familiar with what a link preview is, you can check out [this article](https://uiw.tf/link-preview).
 
-Besides a _pleasing UI_, I wanted to have screenshots that were resized to according dimensions (not too large, since they are going to be shown as small images), saved as `webp` (also to keep them as tiny as possible) and also regularly updated.
+Besides a _pleasing UI_, I wanted to have screenshots that were served statically, resized to according dimensions (not too large, since they are going to be shown as small images), saved as `webp` (also to keep them as tiny as possible) and also regularly updated.
 
-The need of keeping them updated was due to the fact that some pages from certain application may often change (such as a twitter profile) and I wanted the screenshots to be as close to present as possible.
+The need of keeping them updated was due to the fact that some pages from certain application may often change (such as a twitter profile).
 
 #### Note
 
-For those who are not familiar with that image format:
+For those who are not familiar with the `webp` image format:
 
 > WebP is a modern image format that provides superior lossless and lossy compression for images on the web. Using WebP, webmasters and web developers can create smaller, richer images that make the web faster.
 
 ## Generating screenshots with Github Actions
 
-The first thing that came to my mind while I was thinking about a mechanism that is going to automatically generate the screenshots was **Github Actions**.
+The first thing that came to my mind while I was thinking about a mechanism that is going to automatically generate the screenshots was by using **Github Actions**.
 
 I've also prepared an example app, check out the [live example](https://github-actions-images.vercel.app/) and also the [source code](https://github.com/mariusflorescu/github-actions-images).
 
@@ -73,16 +73,22 @@ This actions runs every 12 hours, installs the dependencies, runs the script tha
 
 Firstly, the script runs a cleanup function which is going to remove the `public/` folder, creates an instance of a _Headless Browser_ then iterates through an array of objects (constants, which consist of name and url) and takes the screenshot for both _light_ and _dark_ color scheme.
 
-After the screenshots of both themes is done, we are going to resize the images and save them with the `webp` extension. To resize the images I'm using [sharp](https://www.npmjs.com/package/sharp), feel free to check it out.
+After the screenshots of both themes is done, we are going to resize the images and save them with the `webp` extension.
 
-#### Note
+#### Notes
 
-I'm using `browserless` due to its strong configuration out of the box, which is _tricks_ many applications against their bot protection. As an example, trying to screenshots your _Twitter_ account with either Puppeteer or Playwright with no prior configuration will result in screenshots that are going to look like this:
+1. The resizing is made by using [sharp](https://www.npmjs.com/package/sharp).
 
-INSERT IMG
+2. I'm using `browserless` due to its strong configuration out of the box, which is _tricks_ many applications against their bot protection. As an example, trying to screenshots your _Twitter_ account with either Puppeteer or Playwright with no prior configuration will result in screenshots that are going to look like this:
+
+![Twitter Browser no longer supported](/link-previews/twitter.png)
 
 ### Room for improvements
 
-This action seems to run perfectly, but we must ask ourselves what happens if the Headless Browser cannot connect to the website or something else goes wrong ?In the current state, the script would simply fail and not update the repository.
+This action seems to run perfectly, but we must ask ourselves _what happens if the Headless Browser cannot connect to the website or something else goes wrong ?_ In the current state, the script would **fail and not update** the repository.
 
 A more _fail safe_ upgrade that would guarantee us that we generate as many new screenshots as we can and deliver them is to **not run** the cleanup function in the first place.
+
+Instead, we should save the images in another folder and then replace the contents of the old screenshots with the newly generated ones.
+
+For _brand new_ screenshots that need to be taken, we can either run the same action but on **push** on the `main` branch or just run the script locally and then push the changes.
