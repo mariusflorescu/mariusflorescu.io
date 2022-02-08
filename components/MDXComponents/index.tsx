@@ -60,8 +60,16 @@ const inlineCode = (
   ></code>
 );
 
+const anchor = (
+  props: React.DetailedHTMLProps<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  >
+) => <a {...props} target="_blank" />;
+
 const MDXComponents = {
   pre: CodeBlock,
+  a: anchor,
   inlineCode,
   DemoLinkPreview,
 };
