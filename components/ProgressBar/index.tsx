@@ -20,20 +20,17 @@ const ProgressBar = () => {
   const computeWidth = () => {
     if (!progressRef || !progressRef.current) return;
 
-    const result =
-      (window.scrollY * 100) / (maxScrollHeight - window.outerHeight);
-
+    const result = (window.scrollY * 100) / maxScrollHeight;
     progressRef.current.style.width = `${result}%`;
   };
 
   const computeWidthAndHeight = () => {
-    maxScrollHeight = document.body.scrollHeight;
+    maxScrollHeight = document.body.scrollHeight - window.innerHeight;
     computeWidth();
   };
 
   React.useEffect(() => {
     if (checkInvalidRoute()) return;
-    if (typeof window === undefined || typeof document === undefined) return;
 
     computeWidthAndHeight();
 

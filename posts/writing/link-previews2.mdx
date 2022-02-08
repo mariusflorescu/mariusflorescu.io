@@ -5,7 +5,11 @@ description: "To be replaced"
 status: "public"
 ---
 
-Lately, I've been exploring ways of dynamically generating screenshots and found few interesting methods but they were lacking two important points from my perspective, _performance_ and _user experience_.
+The idea of generating screenshots dinamically rose while I was _exploring_ different methods of displaying images which needed to be updated on a regular basis.
+
+What do I mean by _updated_ is that the image needed to be invalidated after a certain amount of time, creating a new one. This was mainly because I was trying to serve up to date screenshots of apps that were changing very often.
+
+After creating API endpoints that took the screenshots, caching the result and also playing with [Microlink's Screenshot API](https://microlink.io/screenshot), which was a much _simpler_ solution since I was acheiving the same result in few lines of code and 0 dependencies, I've came to the conclusion that the sacrifice of that one user that needed to _wait_ for so long to get the image (when it was not cached, aproximately 5-7 seconds) is **not worth**, so I decided to _pivot_ and focus on serving them statically.
 
 ## The goal
 
@@ -13,11 +17,11 @@ To give you a little bit of context, what I wanted to achieve is a link preview 
 
 Besides a _pleasing UI_, I wanted to have screenshots that were served statically, resized to according dimensions (not too large, since they are going to be shown as small images), saved as `webp` (also to keep them as tiny as possible) and also regularly updated.
 
-The need of keeping them updated was due to the fact that some pages from certain application may often change (such as a twitter profile).
+An example of a screenshot that may change often is your _twitter profile_, due to profile/cover picture changes and retweets.
 
 #### Note
 
-For those who are not familiar with the `webp` image format:
+For those who are curious about what is the `webp` image format:
 
 > WebP is a modern image format that provides superior lossless and lossy compression for images on the web. Using WebP, webmasters and web developers can create smaller, richer images that make the web faster.
 
@@ -27,9 +31,11 @@ The first thing that came to my mind while I was thinking about a mechanism that
 
 I've also prepared an example app, check out the [live example](https://github-actions-images.vercel.app/) and also the [source code](https://github.com/mariusflorescu/github-actions-images).
 
+![Live example](/link-previews/example.gif)
+
 ### But... who?
 
-The idea is straight-forward. We will have an action that will be triggered at an interval of time, which is going to update our repository with new images.
+The idea is straight-forward. We will have a workflow that is going to act like a cronjob and which will run a script that generates all the images and then pushes them back to the repository.
 
 ### Workflow
 
@@ -63,7 +69,7 @@ jobs:
           git push
 ```
 
-This actions runs every 12 hours, installs the dependencies, runs the script that is creating the screenshots and then it pushes them back to the current repository.
+A brief explanation of what this actions does is that it runs every 12 hours, installs the dependencies, runs the script that is creating the screenshots and then it pushes them back to the current repository.
 
 #### Note
 
@@ -71,9 +77,9 @@ This actions runs every 12 hours, installs the dependencies, runs the script tha
 
 ### The script
 
-Firstly, the script runs a cleanup function which is going to remove the `public/` folder, creates an instance of a _Headless Browser_ then iterates through an array of objects (constants, which consist of name and url) and takes the screenshot for both _light_ and _dark_ color scheme.
+Firstly, the script runs a cleanup function which is going to remove the `public/` folder, creates an instance of a _Headless Browser_ then iterates through an array of objects (constants, which consists of name and url) and takes the screenshot for both _light_ and _dark_ color scheme for all of them.
 
-After the screenshots of both themes is done, we are going to resize the images and save them with the `webp` extension.
+After each set of screenshots (both themes) is done, we are going to resize the images and save them with the `webp` extension.
 
 #### Notes
 
@@ -91,4 +97,18 @@ A more _fail safe_ upgrade that would guarantee us that we generate as many new 
 
 Instead, we should save the images in another folder and then replace the contents of the old screenshots with the newly generated ones.
 
-For _brand new_ screenshots that need to be taken, we can either run the same action but on **push** on the `main` branch or just run the script locally and then push the changes.
+For _new_ screenshots that need to be taken, we can either run the same action but on **push** on the `main` branch or just run the script locally and then push the changes.
+
+## Is it worth ?
+
+Well, it depends on how much time do you want to spend on this feature.
+
+If you have the same need that I had and you have some time for development and maintaing, this seems like a solid solution due to its _performance_.
+
+---
+
+If you are looking for a simpler solution, there is _Microlink's API_, which I mentioned above. One strong point that it has is the _ease of use_, since you only need to build the query params and that's it, you will get an image which is going to be cached. You even have the possibility of adding configuration through query parameters, such as `colorScheme`, `waitUntil`, ...
+
+However, from my personal experience, trying to screenshot my Twitter/Github account with Microlink ended in _almost blank_ images most of the time.
+
+![My Twitter screenshotted by Microlink](/link-previews/my-twitter.png)
