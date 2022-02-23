@@ -9,7 +9,7 @@ The idea of generating screenshots dynamically rose while I was _exploring_ diff
 
 What I mean by _updated_ is that the image needed to be invalidated after a certain amount of time, creating a new one. This was mainly because I was trying to serve up to date screenshots of apps that were changing very often.
 
-I started by experimenting with using an API endpoint that took screenshot with Chromium, then caching it with HTTP headers. I also used [Microlink’s Screenshot API](https://microlink.io/screenshot), which was a much simpler solution since it replaced my endpoint with only a few lines of code. However, I came to the conclusion that HTTP caching was not good enough because the first visitor to an uncached image would have to wait 5-7 seconds! Instead, I decided to pivot and focus on serving static images that have no extreme loading times.
+I started by experimenting with using an API endpoint that took screenshot with Chromium, then _caching_ it with HTTP headers. I also used [Microlink’s Screenshot API](https://microlink.io/screenshot), which was a much _simpler_ solution since it replaced my endpoint with only a few lines of code. However, I came to the conclusion that HTTP caching was not good enough because the first visitor to an uncached image would have to wait **5-7 seconds**! Instead, I decided to _pivot and focus_ on serving static images that have no extreme loading times.
 
 ## The goal
 
