@@ -5,11 +5,11 @@ description: "Automatically generating screenshots at an interval of time with G
 status: "public"
 ---
 
-The idea of generating screenshots dinamically rose while I was _exploring_ different methods of displaying images which needed to be updated on a regular basis.
+The idea of generating screenshots dynamically rose while I was _exploring_ different methods of displaying images which needed to be updated on a regular basis.
 
-What do I mean by _updated_ is that the image needed to be invalidated after a certain amount of time, creating a new one. This was mainly because I was trying to serve up to date screenshots of apps that were changing very often.
+What I mean by _updated_ is that the image needed to be invalidated after a certain amount of time, creating a new one. This was mainly because I was trying to serve up to date screenshots of apps that were changing very often.
 
-After creating API endpoints that took the screenshots, caching the result and also playing with [Microlink's Screenshot API](https://microlink.io/screenshot), which was a much _simpler_ solution since I was acheiving the same result in few lines of code and 0 dependencies, I've came to the conclusion that the sacrifice of that one user that needed to _wait_ for so long to get the image (when it was not cached, aproximately 5-7 seconds) is **not worth**, so I decided to _pivot_ and focus on serving them statically.
+I started by experimenting with using an API endpoint that took screenshot with Chromium, then caching it with HTTP headers. I also used [Microlink’s Screenshot API](https://microlink.io/screenshot), which was a much simpler solution since it replaced my endpoint with only a few lines of code. However, I came to the conclusion that HTTP caching was not good enough because the first visitor to an uncached image would have to wait 5-7 seconds! Instead, I decided to pivot and focus on serving static images that have no extreme loading times.
 
 ## The goal
 
@@ -29,13 +29,9 @@ For those who are curious about what is the `webp` image format:
 
 The first thing that came to my mind while I was thinking about a mechanism that is going to automatically generate the screenshots was by using **Github Actions**.
 
-I've also prepared an example app, check out the [live example](https://github-actions-images.vercel.app/) and also the [source code](https://github.com/mariusflorescu/github-actions-images).
-
-![Live example](/link-previews/example.gif)
-
 ### But... who?
 
-The idea is straight-forward. We will have a workflow that is going to act like a cronjob and which will run a script that generates all the images and then pushes them back to the repository.
+The idea is straight-forward. We will use a workflow with a cron job that runs a script that generates all the images and pushes them back to the repository.
 
 ### Workflow
 
@@ -69,8 +65,6 @@ jobs:
           git push
 ```
 
-A brief explanation of what this actions does is that it runs every 12 hours, installs the dependencies, runs the script that is creating the screenshots and then it pushes them back to the current repository.
-
 #### Note
 
 `DerYeger/yarn-setup-action@master` is used because **yarn** is my package manager of choice.
@@ -79,15 +73,21 @@ A brief explanation of what this actions does is that it runs every 12 hours, in
 
 Firstly, the script runs a cleanup function which is going to remove the `public/` folder, creates an instance of a _Headless Browser_ then iterates through an array of objects (constants, which consists of name and url) and takes the screenshot for both _light_ and _dark_ color scheme for all of them.
 
-After each set of screenshots (both themes) is done, we are going to resize the images and save them with the `webp` extension.
+After each set of screenshots is done, we are going to resize the images and save them with the `webp` extension.
 
 #### Notes
 
-1. The resizing is made by using [sharp](https://www.npmjs.com/package/sharp).
+1. The resizing is done by using [sharp](https://www.npmjs.com/package/sharp).
 
 2. I'm using `browserless` due to its strong configuration out of the box, which is _tricks_ many applications against their bot protection. As an example, trying to screenshots your _Twitter_ account with either Puppeteer or Playwright with no prior configuration will result in screenshots that are going to look like this:
 
 ![Twitter Browser no longer supported](/link-previews/twitter.png)
+
+### Demo
+
+I've also prepared an example app, check out the [live example](https://github-actions-images.vercel.app/) and also the [source code](https://github.com/mariusflorescu/github-actions-images).
+
+![Live example](/link-previews/example.gif)
 
 ### Room for improvements
 
@@ -99,7 +99,7 @@ Instead, we should save the images in another folder and then replace the conten
 
 For _new_ screenshots that need to be taken, we can either run the same action but on **push** on the `main` branch or just run the script locally and then push the changes.
 
-## Is it worth ?
+## Is it worth?
 
 Well, it depends on how much time do you want to spend on this feature.
 
@@ -107,7 +107,7 @@ If you have the same need that I had and you have some time for development and 
 
 ---
 
-If you are looking for a simpler solution, there is _Microlink's API_ (probably the most popular solution seen so far for link previews), which I mentioned above. One strong point that it has is the _ease of use_, since you only need to build the query params and that's it, you will get an image which is going to be cached. You even have the possibility of adding configuration through query parameters, such as `colorScheme`, `waitUntil`, ...
+If you are looking for a simpler solution, there is _Microlink's API_ (probably the most popular solution seen so far for link previews), which I mentioned above. One strong point is the _ease of use_, since you only need to build the query params and that's it, you will get an image which is going to be cached. You even have the possibility of adding configuration through query parameters, such as `colorScheme`, `waitUntil`, ...
 
 However, from my personal experience, trying to screenshot my Twitter/Github account with Microlink ended in _almost blank_ images most of the time.
 
