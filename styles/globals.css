@@ -88,7 +88,11 @@
     @apply font-playfair font-normal italic;
   }
 
-  .prose a {
+  .prose a:not([href*="#"]) {
     @apply after:content-['↗'] after:ml-0.5 decoration-2 decoration-transparent transition-all duration-200 text-gray-500 dark:text-gray-400 hover:text-gray-800 hover:dark:text-gray-50 hover:decoration-gray-800 hover:dark:decoration-gray-50;
+  }
+
+  .prose a:is([href*="#"]) {
+    @apply decoration-transparent transition-all duration-200 text-gray-500 dark:text-gray-400 hover:text-gray-800 hover:dark:text-gray-50;
   }
 }

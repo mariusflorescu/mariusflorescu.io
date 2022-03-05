@@ -65,7 +65,12 @@ const anchor = (
     React.AnchorHTMLAttributes<HTMLAnchorElement>,
     HTMLAnchorElement
   >
-) => <a {...props} target="_blank" />;
+) => (
+  <a
+    {...props}
+    target={props.href?.startsWith("https") ? "_blank" : undefined}
+  />
+);
 
 const MDXComponents = {
   pre: CodeBlock,
