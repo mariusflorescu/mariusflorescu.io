@@ -84,6 +84,7 @@ const getPostBySlug = async (type: string, slug?: string) => {
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
+      remarkPlugins: [],
       rehypePlugins: [[rehypePrettyCode, options]],
     },
   });
