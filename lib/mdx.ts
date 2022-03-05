@@ -12,7 +12,7 @@ const root = process.cwd();
 
 const options = {
   theme: JSON.parse(
-    fs.readFileSync(require.resolve("../styles/code.json"), "utf-8")
+    fs.readFileSync(path.join(root, "styles", "code.json"), "utf-8")
   ),
   onVisitLine(node: any) {
     if (node.children.length === 0) {
