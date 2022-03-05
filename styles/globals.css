@@ -72,10 +72,6 @@
     @apply before:content-[''] after:content-[''] font-playfair italic font-normal;
   }
 
-  .prose pre[class*="language-"] {
-    @apply mt-0 pt-0 rounded-t-none bg-gray-100 text-gray-900 dark:bg-gray-1000 dark:text-gray-50;
-  }
-
   .prose li {
     @apply my-1;
   }
@@ -86,6 +82,14 @@
 
   .prose em {
     @apply font-playfair font-normal italic;
+  }
+
+  .prose pre {
+    @apply mt-0 rounded-t-none bg-gray-1000 dark:bg-gray-1000;
+  }
+
+  .prose pre > code {
+    display: grid;
   }
 
   .prose a:not([href*="#"]) {
