@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const DemoBox: React.FC = ({ children }) => {
   return (
@@ -7,7 +7,7 @@ const DemoBox: React.FC = ({ children }) => {
         {children}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DemoBox;
+export default DemoBox

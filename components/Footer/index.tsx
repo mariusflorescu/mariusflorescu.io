@@ -1,5 +1,5 @@
-import { GithubIcon, TwitterIcon, LinkedinIcon } from "@icons";
-import Container from "@components/Container";
+import { GithubIcon, TwitterIcon, LinkedinIcon } from '@icons'
+import Container from '@components/Container'
 const Footer = () => {
   return (
     <Container className="p-6">
@@ -36,7 +36,7 @@ const Footer = () => {
         </div>
       </div>
     </Container>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

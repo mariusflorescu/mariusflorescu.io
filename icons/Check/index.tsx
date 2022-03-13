@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const CheckIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
@@ -17,7 +17,7 @@ const CheckIcon = (props: React.SVGProps<SVGSVGElement>) => {
     >
       <polyline points="20 6 9 17 4 12"></polyline>
     </svg>
-  );
-};
+  )
+}
 
-export default CheckIcon;
+export default CheckIcon

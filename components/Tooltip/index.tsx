@@ -1,13 +1,13 @@
-import React from "react";
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-import { useTheme } from "next-themes";
+import React from 'react'
+import * as TooltipPrimitive from '@radix-ui/react-tooltip'
+import { useTheme } from 'next-themes'
 
 type TProps = {
-  text: string;
-};
+  text: string
+}
 
 const Tooltip: React.FC<TProps> = ({ children, text }) => {
-  const { theme } = useTheme();
+  const { theme } = useTheme()
 
   return (
     <TooltipPrimitive.TooltipProvider>
@@ -18,13 +18,13 @@ const Tooltip: React.FC<TProps> = ({ children, text }) => {
           className="px-3 py-2 bg-white dark:bg-black text-gray-900 dark:text-gray-50 shadow-lg rounded text-sm"
         >
           <TooltipPrimitive.TooltipArrow
-            fill={theme === "light" ? "#fff" : "#000"}
+            fill={theme === 'light' ? '#fff' : '#000'}
           />
           {text}
         </TooltipPrimitive.Content>
       </TooltipPrimitive.Root>
     </TooltipPrimitive.TooltipProvider>
-  );
-};
+  )
+}
 
-export default Tooltip;
+export default Tooltip

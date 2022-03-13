@@ -1,10 +1,10 @@
-import type { NextPage } from "next";
-import { useRouter } from "next/router";
-import Image from "next/image";
+import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 const OgImage: NextPage = () => {
-  const router = useRouter();
-  const { title, description } = router.query;
+  const router = useRouter()
+  const { title, description } = router.query
 
   return (
     <div className="w-full h-full px-24  bg-gray-1000 text-gray-100 bg-grid-meta font-inter flex flex-col justify-center items-center">
@@ -15,7 +15,7 @@ const OgImage: NextPage = () => {
       <h4 className="text-2xl pb-4">{description}</h4>
       <h6 className="text-xl font-ibm text-gray-400">mariusflorescu.io</h6>
     </div>
-  );
-};
+  )
+}
 
-export default OgImage;
+export default OgImage

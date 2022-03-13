@@ -4,7 +4,7 @@
 
 @layer base {
   #__next {
-    @apply h-full isolate;
+    @apply min-h-full isolate;
   }
 }
 
@@ -13,10 +13,10 @@
     background-size: 40px 40px;
     background-image: linear-gradient(
         to right,
-        theme("colors.gray-150") 1px,
+        theme('colors.gray-150') 1px,
         transparent 1px
       ),
-      linear-gradient(to bottom, theme("colors.gray-150") 1px, transparent 1px);
+      linear-gradient(to bottom, theme('colors.gray-150') 1px, transparent 1px);
     background-position: calc(100% + 20px) calc(100% + 20px);
   }
 
@@ -24,10 +24,10 @@
     background-size: 40px 40px;
     background-image: linear-gradient(
         to right,
-        theme("colors.gray.900") 1px,
+        theme('colors.gray.900') 1px,
         transparent 1px
       ),
-      linear-gradient(to bottom, theme("colors.gray.900") 1px, transparent 1px);
+      linear-gradient(to bottom, theme('colors.gray.900') 1px, transparent 1px);
     background-position: calc(100% + 20px) calc(100% + 20px);
   }
 
@@ -35,10 +35,10 @@
     background-size: 40px 40px;
     background-image: linear-gradient(
         to right,
-        theme("colors.gray.800") 1px,
+        theme('colors.gray.800') 1px,
         transparent 1px
       ),
-      linear-gradient(to bottom, theme("colors.gray.800") 1px, transparent 1px);
+      linear-gradient(to bottom, theme('colors.gray.800') 1px, transparent 1px);
     background-position: calc(100% + 20px) calc(100% + 20px);
   }
 }
@@ -72,10 +72,6 @@
     @apply before:content-[''] after:content-[''] font-playfair italic font-normal;
   }
 
-  .prose pre[class*="language-"] {
-    @apply mt-0 pt-0 rounded-t-none bg-gray-100 text-gray-900 dark:bg-gray-1000 dark:text-gray-50;
-  }
-
   .prose li {
     @apply my-1;
   }
@@ -88,7 +84,19 @@
     @apply font-playfair font-normal italic;
   }
 
-  .prose a {
+  .prose pre {
+    @apply mt-0 rounded-t-none bg-gray-1000 dark:bg-gray-1000;
+  }
+
+  .prose pre > code {
+    display: grid;
+  }
+
+  .prose a:not([href*='#']) {
     @apply after:content-['↗'] after:ml-0.5 decoration-2 decoration-transparent transition-all duration-200 text-gray-500 dark:text-gray-400 hover:text-gray-800 hover:dark:text-gray-50 hover:decoration-gray-800 hover:dark:decoration-gray-50;
+  }
+
+  .prose a:is([href*='#']) {
+    @apply decoration-transparent transition-all duration-200 text-gray-500 dark:text-gray-400 hover:text-gray-800 hover:dark:text-gray-50;
   }
 }
