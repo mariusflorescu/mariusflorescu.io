@@ -1,10 +1,10 @@
-import GithubIcon from "./Github";
-import TwitterIcon from "./Twitter";
-import LinkedinIcon from "./Linkedin";
-import SunIcon from "./Sun";
-import MoonIcon from "./Moon";
-import CopyIcon from "./Copy";
-import CheckIcon from "./Check";
+import GithubIcon from './Github'
+import TwitterIcon from './Twitter'
+import LinkedinIcon from './Linkedin'
+import SunIcon from './Sun'
+import MoonIcon from './Moon'
+import CopyIcon from './Copy'
+import CheckIcon from './Check'
 
 export {
   GithubIcon,
@@ -13,5 +13,5 @@ export {
   SunIcon,
   MoonIcon,
   CopyIcon,
-  CheckIcon,
-};
+  CheckIcon
+}

@@ -1,16 +1,16 @@
-import React from "react";
-import Head from "next/head";
+import React from 'react'
+import Head from 'next/head'
 
 type TProps = {
-  title?: string;
-  description?: string;
-};
+  title?: string
+  description?: string
+}
 
-const imageURL = "https://www.mariusflorescu.io/ogimg.png";
+const imageURL = 'https://www.mariusflorescu.io/ogimg.png'
 
 const Meta: React.FC<TProps> = ({
-  title = "Marius Florescu",
-  description = "A blog fullfilled with curiosities and good vibes.",
+  title = 'Marius Florescu',
+  description = 'A blog fullfilled with curiosities and good vibes.'
 }) => {
   return (
     <Head>
@@ -36,7 +36,7 @@ const Meta: React.FC<TProps> = ({
       <meta name="apple-mobile-web-app-title" content="Marius Florescu" />
       <meta name="author" content="Marius Florescu" />
     </Head>
-  );
-};
+  )
+}
 
-export default Meta;
+export default Meta

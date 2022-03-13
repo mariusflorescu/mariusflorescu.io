@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react'
 
 type TProps = {
-  publishedAt: string;
-  readingTime: string;
-};
+  publishedAt: string
+  readingTime: string
+}
 
 const PostDetails: React.FC<TProps> = ({ publishedAt, readingTime }) => {
   return (
@@ -14,7 +14,7 @@ const PostDetails: React.FC<TProps> = ({ publishedAt, readingTime }) => {
       </div>
       <hr />
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default PostDetails;
+export default PostDetails

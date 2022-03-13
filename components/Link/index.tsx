@@ -1,6 +1,6 @@
-import React from "react";
-import type { LinkProps } from "next/link";
-import NextLink from "next/link";
+import React from 'react'
+import type { LinkProps } from 'next/link'
+import NextLink from 'next/link'
 
 const Link = ({ children, ...rest }: React.PropsWithChildren<LinkProps>) => {
   return (
@@ -9,8 +9,7 @@ const Link = ({ children, ...rest }: React.PropsWithChildren<LinkProps>) => {
         {children}
       </a>
     </NextLink>
-  );
-};
+  )
+}
 
-
-export default Link;
+export default Link

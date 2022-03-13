@@ -13,10 +13,10 @@
     background-size: 40px 40px;
     background-image: linear-gradient(
         to right,
-        theme("colors.gray-150") 1px,
+        theme('colors.gray-150') 1px,
         transparent 1px
       ),
-      linear-gradient(to bottom, theme("colors.gray-150") 1px, transparent 1px);
+      linear-gradient(to bottom, theme('colors.gray-150') 1px, transparent 1px);
     background-position: calc(100% + 20px) calc(100% + 20px);
   }
 
@@ -24,10 +24,10 @@
     background-size: 40px 40px;
     background-image: linear-gradient(
         to right,
-        theme("colors.gray.900") 1px,
+        theme('colors.gray.900') 1px,
         transparent 1px
       ),
-      linear-gradient(to bottom, theme("colors.gray.900") 1px, transparent 1px);
+      linear-gradient(to bottom, theme('colors.gray.900') 1px, transparent 1px);
     background-position: calc(100% + 20px) calc(100% + 20px);
   }
 
@@ -35,10 +35,10 @@
     background-size: 40px 40px;
     background-image: linear-gradient(
         to right,
-        theme("colors.gray.800") 1px,
+        theme('colors.gray.800') 1px,
         transparent 1px
       ),
-      linear-gradient(to bottom, theme("colors.gray.800") 1px, transparent 1px);
+      linear-gradient(to bottom, theme('colors.gray.800') 1px, transparent 1px);
     background-position: calc(100% + 20px) calc(100% + 20px);
   }
 }
@@ -92,11 +92,11 @@
     display: grid;
   }
 
-  .prose a:not([href*="#"]) {
+  .prose a:not([href*='#']) {
     @apply after:content-['↗'] after:ml-0.5 decoration-2 decoration-transparent transition-all duration-200 text-gray-500 dark:text-gray-400 hover:text-gray-800 hover:dark:text-gray-50 hover:decoration-gray-800 hover:dark:decoration-gray-50;
   }
 
-  .prose a:is([href*="#"]) {
+  .prose a:is([href*='#']) {
     @apply decoration-transparent transition-all duration-200 text-gray-500 dark:text-gray-400 hover:text-gray-800 hover:dark:text-gray-50;
   }
 }

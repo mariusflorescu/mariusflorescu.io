@@ -1,14 +1,14 @@
-import React from "react";
-import type { NextPageWithLayout, PostMatter } from "@types";
-import { getListOfFilesFrontMatter } from "@lib/mdx";
-import Layout from "@layout/Main";
-import { withProviders } from "@components/Providers/withProviders";
-import Meta from "@components/Meta";
-import PostCard from "@components/PostCard";
+import React from 'react'
+import type { NextPageWithLayout, PostMatter } from '@types'
+import { getListOfFilesFrontMatter } from '@lib/mdx'
+import Layout from '@layout/Main'
+import { withProviders } from '@components/Providers/withProviders'
+import Meta from '@components/Meta'
+import PostCard from '@components/PostCard'
 
 type TProps = {
-  writings: PostMatter[];
-};
+  writings: PostMatter[]
+}
 
 const Writings: NextPageWithLayout<TProps> = ({ writings }) => {
   return (
@@ -27,21 +27,21 @@ const Writings: NextPageWithLayout<TProps> = ({ writings }) => {
         ))}
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
 Writings.getLayout = withProviders((page: React.ReactElement) => {
-  return <Layout>{page}</Layout>;
-});
+  return <Layout>{page}</Layout>
+})
 
 export async function getStaticProps() {
-  const writings = getListOfFilesFrontMatter("writing");
+  const writings = getListOfFilesFrontMatter('writing')
 
   return {
     props: {
-      writings,
-    },
-  };
+      writings
+    }
+  }
 }
 
-export default Writings;
+export default Writings

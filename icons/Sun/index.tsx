@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const SunIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
@@ -25,7 +25,7 @@ const SunIcon = (props: React.SVGProps<SVGSVGElement>) => {
       <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
       <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
     </svg>
-  );
-};
+  )
+}
 
-export default SunIcon;
+export default SunIcon

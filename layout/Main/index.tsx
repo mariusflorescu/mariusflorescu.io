@@ -1,7 +1,7 @@
-import React from "react";
-import Container from "../../components/Container";
-import Nav from "../../components/Nav";
-import Footer from "../../components/Footer";
+import React from 'react'
+import Container from '../../components/Container'
+import Nav from '../../components/Nav'
+import Footer from '../../components/Footer'
 
 const Layout: React.FC = ({ children }) => (
   <div className="w-full h-full flex flex-col">
@@ -13,6 +13,6 @@ const Layout: React.FC = ({ children }) => (
     </Container>
     <Footer />
   </div>
-);
+)
 
-export default Layout;
+export default Layout

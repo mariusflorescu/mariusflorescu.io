@@ -1,6 +1,6 @@
-import React from "react";
-import Head from "next/head";
-import * as HoverCard from "@radix-ui/react-hover-card";
+import React from 'react'
+import Head from 'next/head'
+import * as HoverCard from '@radix-ui/react-hover-card'
 
 const LinkPreview = () => {
   return (
@@ -34,7 +34,7 @@ const LinkPreview = () => {
         </HoverCard.Content>
       </HoverCard.Root>
     </>
-  );
-};
+  )
+}
 
-export default LinkPreview;
+export default LinkPreview

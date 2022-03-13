@@ -1,34 +1,30 @@
-import React from "react";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import type { NextPageWithLayout, FrontMatter } from "@types";
-import { getPosts, getPostBySlug } from "@lib/mdx";
-import Layout from "@layout/Main";
-import { withProviders } from "@components/Providers/withProviders";
-import Meta from "@components/Meta";
-import PostDetails from "@components/PostDetails";
+import React from 'react'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import type { NextPageWithLayout, FrontMatter } from '@types'
+import { getPosts, getPostBySlug } from '@lib/mdx'
+import Layout from '@layout/Main'
+import { withProviders } from '@components/Providers/withProviders'
+import Meta from '@components/Meta'
+import PostDetails from '@components/PostDetails'
 
 type TProps = {
-  mdxSource: MDXRemoteSerializeResult;
-  frontMatter: FrontMatter;
-};
+  mdxSource: MDXRemoteSerializeResult
+  frontMatter: FrontMatter
+}
 
 type TParams = {
   params: {
-    slug: string;
-  };
-};
+    slug: string
+  }
+}
 
 const WritingPost: NextPageWithLayout<TProps> = ({
   mdxSource,
-  frontMatter,
+  frontMatter
 }) => {
-
   return (
     <React.Fragment>
-      <Meta
-        title={frontMatter.title}
-        description={frontMatter.description}
-      />
+      <Meta title={frontMatter.title} description={frontMatter.description} />
       <h1>{frontMatter.title}</h1>
       <PostDetails
         publishedAt={frontMatter.publishedAt}
@@ -36,32 +32,32 @@ const WritingPost: NextPageWithLayout<TProps> = ({
       />
       <MDXRemote {...mdxSource} />
     </React.Fragment>
-  );
-};
+  )
+}
 
 WritingPost.getLayout = withProviders((page: React.ReactElement) => {
-  return <Layout>{page}</Layout>;
-});
+  return <Layout>{page}</Layout>
+})
 
 export async function getStaticPaths() {
-  const posts = getPosts("writing");
+  const posts = getPosts('writing')
 
   return {
     paths: posts.map((p) => ({
       params: {
-        slug: p.replace(/\.mdx/, ""),
-      },
+        slug: p.replace(/\.mdx/, '')
+      }
     })),
-    fallback: false,
-  };
+    fallback: false
+  }
 }
 
 export async function getStaticProps({ params }: TParams) {
-  const post = await getPostBySlug("writing", params.slug);
+  const post = await getPostBySlug('writing', params.slug)
 
   return {
-    props: post,
-  };
+    props: post
+  }
 }
 
-export default WritingPost;
+export default WritingPost

@@ -1,16 +1,16 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react'
+import Link from 'next/link'
 
 type PostMatter = {
-  title: string;
-  publishedAt: string;
-  description: string;
-  slug: string;
-};
+  title: string
+  publishedAt: string
+  description: string
+  slug: string
+}
 
 type TProps = {
-  post: PostMatter;
-};
+  post: PostMatter
+}
 
 const PostCard: React.FC<TProps> = ({ post }) => {
   return (
@@ -27,7 +27,7 @@ const PostCard: React.FC<TProps> = ({ post }) => {
         </div>
       </div>
     </Link>
-  );
-};
+  )
+}
 
-export default PostCard;
+export default PostCard

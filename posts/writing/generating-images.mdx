@@ -1,8 +1,8 @@
 ---
-title: "Statically Generating Screenshots"
-publishedAt: "Mar 13"
-description: "Automatically generating screenshots at an interval of time with Github Actions and serving them statically."
-status: "public"
+title: 'Statically Generating Screenshots'
+publishedAt: 'Mar 13'
+description: 'Automatically generating screenshots at an interval of time with Github Actions and serving them statically.'
+status: 'public'
 ---
 
 The idea of dynamically generating screenshots which meant to be statically served rose while I was *exploring* different methods of displaying images which needed to be updated on a regular basis.
@@ -106,16 +106,16 @@ Example:
 
 const entries = [
   {
-    name: "twitter",
-    url: "https://twitter.com/_mariusflorescu",
+    name: 'twitter',
+    url: 'https://twitter.com/_mariusflorescu'
   },
   {
-    name: "github",
-    url: "https://github.com/mariusflorescu",
-  },
-];
+    name: 'github',
+    url: 'https://github.com/mariusflorescu'
+  }
+]
 
-const screenshotsDir = "./public/screenshots";
+const screenshotsDir = './public/screenshots'
 ```
 
 We also need some utility functions for creating a directory, running a cleanup and also for resizing:
@@ -125,28 +125,28 @@ We also need some utility functions for creating a directory, running a cleanup 
 
 const createDir = (dirname) => {
   if (!fs.existsSync(dirname)) {
-    fs.mkdirSync(dirname);
+    fs.mkdirSync(dirname)
   }
-};
+}
 
 const cleanup = () => {
   if (fs.existsSync(screenshotsDir)) {
-    fs.rmdirSync(screenshotsDir, { recursive: true });
+    fs.rmdirSync(screenshotsDir, { recursive: true })
   }
-};
+}
 
 const resize = async (buffer, path) => {
   try {
     await sharp(buffer)
       .resize(400, 256, {
-        fit: "fill",
+        fit: 'fill'
       })
-      .toFile(path);
+      .toFile(path)
   } catch (err) {
-    console.error(err);
-    return err;
+    console.error(err)
+    return err
   }
-};
+}
 ```
 
 - `createDir` - checks if the directory does not exist. If so, it creates a new one.
@@ -162,29 +162,29 @@ Create screenshot function:
 
 const createScreenshot = async (browserless, entry) => {
   try {
-    const dirname = `${screenshotsDir}/${entry.name}`;
-    createDir(dirname);
+    const dirname = `${screenshotsDir}/${entry.name}`
+    createDir(dirname)
 
     const buffers = await Promise.all([
       browserless.screenshot(entry.url, {
-        colorScheme: "light",
-        waitForTimeout: 5000,
+        colorScheme: 'light',
+        waitForTimeout: 5000
       }),
       browserless.screenshot(entry.url, {
-        colorScheme: "dark",
-        waitForTimeout: 5000,
-      }),
-    ]);
+        colorScheme: 'dark',
+        waitForTimeout: 5000
+      })
+    ])
 
     await Promise.all([
       resize(buffers[0], `${dirname}/light.webp`),
-      resize(buffers[1], `${dirname}/dark.webp`),
-    ]);
+      resize(buffers[1], `${dirname}/dark.webp`)
+    ])
   } catch (err) {
-    console.error(err);
-    return err;
+    console.error(err)
+    return err
   }
-};
+}
 ```
 
 This function gets the Headless Browser instance as parameter and the entry itself, creates a new directory with the name of the entry, takes the screenshot for both themes and resizes them accordingly.
@@ -240,7 +240,7 @@ name: Generate screenshots
 
 on:
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: '0 */12 * * *'
 
 jobs:
   cron:
@@ -272,7 +272,7 @@ name: Generate screenshots
 
 on:
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: '0 */12 * * *'
 
 jobs:
   cron:
@@ -323,8 +323,8 @@ const LinkPreview = ({ children, link, imageURN }) => {
         </HoverCard.Content>
       </HoverCard.Root>
     </>
-  );
-};
+  )
+}
 ```
 
 ## Conclusion
