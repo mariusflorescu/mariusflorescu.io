@@ -63,9 +63,19 @@ const anchor = (
   />
 );
 
+const inlineCode = (
+  props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
+) => (
+  <code
+    className="before:content-[''] after:content-[''] px-1 bg-gray-200 dark:bg-gray-800 rounded select-all"
+    {...props}
+  ></code>
+);
+
 const MDXComponents = {
   pre: CodeBlock,
   a: anchor,
+  inlineCode,
   DemoLinkPreview,
 };
 
