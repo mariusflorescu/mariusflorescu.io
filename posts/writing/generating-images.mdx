@@ -9,19 +9,19 @@ The idea of dynamically generating screenshots which meant to be statically serv
 
 What I mean by *updated* is that the image needed to be invalidated after a certain amount of time, creating a new one. This was mainly because I was trying to serve up to date screenshots of apps that were changing very often.
 
-I started by experimenting with using an API endpoint that took screenshot with Chromium, then *caching* it with HTTP headers. I also used **[Microlink’s Screenshot API](https://microlink.io/screenshot)**, which was a much *simpler* solution since it replaced my endpoint with only a few lines of code. However, I came to the conclusion that HTTP caching was not good enough because the first visitor to an uncached image would have to wait **5-7 seconds**! Instead, I decided to *pivot and focus* on serving static images that have no extreme loading times.
+I started by experimenting with using an API endpoint that took screenshot with Chromium, then *caching it with HTTP headers*. I also used **[Microlink’s Screenshot API](https://microlink.io/screenshot)**, which was a much *simpler* solution since it replaced my endpoint with only a few lines of code. However, I came to the conclusion that HTTP caching was not good enough because the first visitor to an uncached image would have to wait **5-7 seconds**! Instead, I decided to pivot and focus on **serving static images** that have no extreme loading times.
 
 ## The Goal
 
 To give you a little bit of context, what I wanted to achieve is a **link preview component**. If you are not familiar with what a link preview is, you can check out **[this article](https://uiw.tf/link-preview)**.
 
-Besides a *pleasing UI*, I wanted to have screenshots for both light and dark theme that were served statically which needed to be small sized and also regularly updated.
+Besides a pleasing UI, I wanted to have screenshots for _both light and dark theme_ that were served statically which needed to be small sized and also regularly updated.
 
-An example of a screenshot that may change often is your *twitter profile*, due to profile/cover picture changes and retweets.
+An example of a screenshot that may change often is your twitter profile, due to profile/cover picture changes and retweets.
 
 I’ve also prepared a [demo app](https://github-actions-images.vercel.app/) of the _link preview component_ which displays a screenshot of my twitter account. The screenshot from this demo is being recreated every 12 hours.
 
-![example.gif](/link-previews/example.gif)
+![Demo application gif](/link-previews/example.gif)
 
 ## Prerequisites
 
@@ -35,15 +35,15 @@ The first thing that came to my mind while I was thinking about a mechanism that
 
 #### What Are Github Actions?
 
-Github Actions is a tool mainly used for automating w*orkflows* such as: building, testing, deploying (CI/CD). Other than that, they may be used for running workflows on certain events like push, new issue, new release or even as cronjob.
+Github Actions is a tool mainly used for **automating workflows** such as: building, testing, deploying (CI/CD). Other than that, they may be used for running workflows on certain events like push, new issue, new release or even as cronjob.
 
-You can read more about Github Actions [here](https://github.com/features/actions).
+Take your time to[read even more](https://github.com/features/actions) about automating workflows.
 
 #### How Do You Create A Workflow?
 
 Creating a new workflow is made by creating `.github/workflows` directory, inside of whom you need to create a `yaml` file which is going to be automatically treated as an action by Github once the code is pushed.
 
-Read more about how do you create a workflows [here](https://docs.github.com/en/actions/quickstart).
+Check out [Github Actions Quickstart](https://docs.github.com/en/actions/quickstart), there you will discover more about creating workflows and viewing the results.
 
 ### Headless Browsers
 
@@ -63,11 +63,7 @@ A _Headless Browser_, is a Web Browser without an User Interface. It can perform
 
 [Browserless](https://github.com/microlinkhq/browserless/tree/master) is the Headless Browser that we are going to use which is built on top of [Puppeteer](https://github.com/puppeteer/puppeteer).
 
-I’ve chose this due to its strong configuration out of the box, which is *tricks* many applications against their bot detection.
-
-As an example, trying to screenshot my _Twitter account_ with either Puppeteer or Playwright (with no prior configuration) will result in screenshots that look like this:
-
-![twitter.png](/link-previews/twitter.png)
+I’ve chose this due to its strong configuration out of the box, which tricks many applications **against their bot detection**.
 
 ### Image Optimisation
 
@@ -75,15 +71,13 @@ Optimisation is such a vast topic to tackle, however what we’re looking for fr
 
 #### Preloading Images
 
-Preloading an image is a process where you are _signalling_ to the browser that this resource is important and the load needs to be done before actually finding it in the DOM.
+[Preloading an image](https://web.dev/preload-responsive-images/) is a process where you are _signalling_ to the browser that this resource is important and the load needs to be done before actually finding it in the DOM.
 
 ```jsx
 <link rel="preload" as="image" href="important_image.png" />
 ```
 
-Of course, preloading is something that **should not be abused** since it may lead to larger loading times of the app and also a bad user experience overall.
-
-If you want to read more about it, I found this article for you: [Preloading responsive images](https://web.dev/preload-responsive-images/).
+Note that **preloading should not be abused** since it may lead to larger loading times of the app and also a bad user experience overall.
 
 #### Keeping It Small
 
@@ -99,7 +93,7 @@ As I mentioned the term **web-friendly**, [WebP](https://developers.google.com/s
 
 Now that we’ve gone through the expected result of the experiment and also some “technical requirements” that will help us achieve this goal, let’s get our hands dirty.
 
-The source code of the demo that we are going to be building is available [here](https://github.com/mariusflorescu/github-actions-images/).
+The source code of the demo that we are going to be building is [available here](https://github.com/mariusflorescu/github-actions-images/).
 
 ### Generating the screenshots
 
@@ -108,6 +102,8 @@ Firstly, we need a constant array of objects that will consist of the name (whic
 Example:
 
 ```jsx
+// lib/generateScreenshots.js
+
 const entries = [
   {
     name: "twitter",
@@ -125,6 +121,8 @@ const screenshotsDir = "./public/screenshots";
 We also need some utility functions for creating a directory, running a cleanup and also for resizing:
 
 ```jsx
+// lib/generateScreenshots.js
+
 const createDir = (dirname) => {
   if (!fs.existsSync(dirname)) {
     fs.mkdirSync(dirname);
@@ -160,6 +158,8 @@ After that, we need 2 more functions, one that will take the actual screenshots 
 Create screenshot function:
 
 ```jsx
+// lib/generateScreenshots.js
+
 const createScreenshot = async (browserless, entry) => {
   try {
     const dirname = `${screenshotsDir}/${entry.name}`;
@@ -192,6 +192,8 @@ This function gets the Headless Browser instance as parameter and the entry itse
 Generating screenshots function:
 
 ```jsx
+// lib/generateScreenshots.js
+
 const generateScreenshots = async () => {
   try {
     const browserlessFactory = createBrowserless();
@@ -221,96 +223,9 @@ All that remains is to add the script to our `package.json`.
 "screenshots": "node ./generateScreenshots.js"
 ```
 
-Putting all the code from above all together:
+Feel free to [take a look](https://github.com/mariusflorescu/github-actions-images/blob/main/lib/generateScreenshots.js) at the file that contains the all the logic necessary to take all the screenshots.
 
-```jsx
-const fs = require("fs");
-const createBrowserless = require("browserless");
-const sharp = require("sharp");
-
-const entries = [
-  {
-    name: "twitter",
-    url: "https://twitter.com/_mariusflorescu",
-  },
-];
-
-const screenshotsDir = "./public/screenshots";
-
-const createDir = (dirname) => {
-  if (!fs.existsSync(dirname)) {
-    fs.mkdirSync(dirname);
-  }
-};
-
-const cleanup = () => {
-  if (fs.existsSync(screenshotsDir)) {
-    fs.rmdirSync(screenshotsDir, { recursive: true });
-  }
-};
-
-const resize = async (buffer, path) => {
-  try {
-    await sharp(buffer)
-      .resize(400, 256, {
-        fit: "fill",
-      })
-      .toFile(path);
-  } catch (err) {
-    console.error(err);
-    return err;
-  }
-};
-
-const createScreenshot = async (browserless, entry) => {
-  try {
-    const dirname = `${screenshotsDir}/${entry.name}`;
-    createDir(dirname);
-
-    const buffers = await Promise.all([
-      browserless.screenshot(entry.url, {
-        colorScheme: "light",
-        waitForTimeout: 5000,
-      }),
-      browserless.screenshot(entry.url, {
-        colorScheme: "dark",
-        waitForTimeout: 5000,
-      }),
-    ]);
-
-    await Promise.all([
-      resize(buffers[0], `${dirname}/light.webp`),
-      resize(buffers[1], `${dirname}/dark.webp`),
-    ]);
-  } catch (err) {
-    console.error(err);
-    return err;
-  }
-};
-
-//looping through the entries and generating screenshots
-const generateScreenshots = async () => {
-  try {
-    const browserlessFactory = createBrowserless();
-    const browserless = await browserlessFactory.createContext();
-
-    cleanup();
-    createDir(screenshotsDir);
-
-    await Promise.all(
-      entries.map((entry) => createScreenshot(browserless, entry))
-    );
-
-    await browserless.destroyContext();
-    await browserlessFactory.close();
-  } catch (err) {
-    console.error("Error while generating the screenshots");
-    console.error(err);
-  }
-}();
-```
-
-**Be aware**, this code is for demo purposes and there is _room for improvement_.
+**Be aware**, this code is for demo purposes and there is room for improvement.
 
 ### Creating the workflow
 
@@ -319,6 +234,8 @@ Now that we have the script that generates our screenshots, we need to create an
 Example workflow for npm users:
 
 ```yaml
+# .github/workflows/screenshots.yaml
+
 name: Generate screenshots
 
 on:
@@ -349,6 +266,8 @@ jobs:
 And also for those who use yarn as their package manager of choice:
 
 ```yaml
+# .github/workflows/screenshots.yaml
+
 name: Generate screenshots
 
 on:
@@ -385,6 +304,8 @@ The component is going to receive 2 props: the link to the page that we want to 
 The component is built in a [Next.js](https://nextjs.org/) app, that’s why the `Head` component is being used for preloading the image. If you are using React, you can use [React-Helmet](https://www.npmjs.com/package/react-helmet). Additionally, I’ve used the [Hover-Card Primitive](https://www.radix-ui.com/docs/primitives/components/hover-card) from Radix-UI.
 
 ```jsx
+// components/LinkPreview/index.js
+
 const LinkPreview = ({ children, link, imageURN }) => {
   return (
     <>
